@@ -53,3 +53,5 @@ $route['default_controller'] = 'socks';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'socks/login';
+$route['add'] = 'socks/add';
+$route['add_admin'] = 'socks/add_admin';

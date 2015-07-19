@@ -9,6 +9,27 @@ class Socks extends CI_Controller {
 	}
 	public function login()
 	{
-		$this->load->view("login_a");
+		if ($this->input->post()['usertype'] === "admin")
+		{
+			$this->load->view("login_a");
+		} else {
+			die("need handler for regular user");
+		}
+	}
+
+	public function add()
+	{
+		if ($this->input->post()['usertype'] === "admin")
+		{
+			$this->load->view("add_a");
+		} else {
+			die("need handler for regular user");
+		}
+	}
+	public function add_admin()
+	{
+	
+		$this->sock->add_admin();
+		die("added");
 	}
 }

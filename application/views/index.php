@@ -7,6 +7,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 </head>
 <body>
-<a href="login">admin login page</a>
+<a href="login_admin">Admin Login Page</a>
 </body>
 </html>

@@ -3,8 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Sock extends CI_Model {
 
-	public function index()
+	public function fetch_all($table)
 	{
-		$this->load->view('welcome_message');
+		return $this->db->query('SELECT * FROM '. $table)->result_array();
+	}
+
+
+	public function add_admin()
+	{
+		var_dump($this->sock->fetch_all('admins'));
 	}
 }
