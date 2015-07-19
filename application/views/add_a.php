@@ -10,7 +10,13 @@
 <body>
 	<div class="wrapper">
 		<div class="row">
-			<form class="col s12" action="add_admin" method="POST" name="add_a">
+		<h1><?php
+			if($this->session->flashdata("errors"))
+			{
+				echo $this->session->flashdata("errors");
+			}
+		?>​</h1>
+			<form class="col s12" action="add_admin" method="POST" name="add_admin">
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="email" type="email" class="validate" name="email">
@@ -25,8 +31,8 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<input id="confpass" type="password" class="validate" name="confpass">
-						<label for="confpass">Confirm Password</label>
+						<input id="passconf" type="password" class="validate" name="passconf">
+						<label for="passconf">Confirm Password</label>
 					</div>
 				</div>
 				<button class="btn waves-effect waves-light" type="submit" name="add">Add Admin

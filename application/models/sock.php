@@ -13,10 +13,60 @@ class Sock extends CI_Model {
 	{
 		return $this->sock->fetch_all('admins');
 	}
+
+	public function get_admin($info)
+	{
+		$query = "SELECT * FROM admins WHERE email='" . $info['email'] . "' AND password='" . $info['password'] . "'";
+		return $this->db->query($query)->row_array();
+	}
+	
 	public function add_admin()
 	{
-		$query = "INSERT INTO `admins` (`email`, `password`, `created_at`, `updated_at`) VALUES (?, ?, 'NOW()', 'NOW()');";
-		$values = array($this->input->post()['email'],$this->input->post()['password']);
-		return $this->db->query($query, $values);
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("email", "Email", "trim|valid_email|required");
+		$this->form_validation->set_rules("password", "Password", "trim|min_length[8]|required|matches[passconf]|md5");
+		$this->form_validation->set_rules("passconf", "Confirm Password", "trim|required|md5");
+
+		$insert_admin = FALSE;
+
+		if($this->form_validation->run() === FALSE)
+		{
+			$this->session->set_flashdata("errors", validation_errors());
+		} else {
+			$query = "INSERT INTO `admins` (`email`, `password`, `created_at`, `updated_at`) VALUES (?, ?, NOW(), NOW());";
+			$values = array($this->input->post()['email'],$this->input->post()['password']);
+			$insert_admin = $this->db->query($query, $values);
+			if($insert_admin)
+			{				
+				$this->session->set_userdata("user_session", $this->sock->get_admin($this->input->post()));
+			} else {
+				$this->session->set_flashdata("errors", "Registration failed.");
+			}
+		}
+		return $insert_admin;
 	}
+
+
+	public function login_admin()
+	{
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("email", "Email", "trim|valid_email|required");
+		$this->form_validation->set_rules("password", "Password", "trim|min_length[8]|required|md5");
+		if($this->form_validation->run() === FALSE)
+		{
+			$this->session->set_flashdata("errors", validation_errors());
+		} else {
+			$user = $this->sock->get_admin($this->input->post());
+			if ($user)
+			{
+				$this->session->set_userdata("user_session", $user);
+			} else {
+				$this->session->set_flashdata("errors", "Invalid email and/or password");
+			}
+		}
+		return $user;
+	}
+
+
+
 }

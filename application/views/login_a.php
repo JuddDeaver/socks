@@ -11,7 +11,13 @@
 <!-- Question, what/how is class="validate" used? -->
 	<div class="wrapper">
 		<div class="row">
-			<form class="col s12" action="add" method="POST" name="login">
+		<h1><?php
+	if($this->session->flashdata("errors"))
+	{
+		echo $this->session->flashdata("errors");
+	}
+?>​</h1>
+			<form class="col s12" action="login_admin" method="POST" name="login_admin">
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="email" type="email" class="validate" name="email">

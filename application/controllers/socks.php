@@ -7,29 +7,45 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view('index');
 	}
-	public function login()
+	public function login_a()
 	{
-		// if ($this->input->post()['usertype'] === "admin")
-		// {
-			$this->load->view("login_a");
-		// } else {
-			// die("need handler for regular user");
-		// }
+		$this->load->view("login_a");
 	}
 
-	public function add()
+	public function add_a()
 	{
-		if ($this->input->post()['usertype'] === "admin")
-		{
-			$this->load->view("add_a");
-		} else {
-			die("need handler for regular user");
-		}
+		$this->load->view("add_a");
 	}
 	public function add_admin()
 	{
-	
-		$this->sock->add_admin();
-		die("added");
+		if($this->sock->add_admin())
+		{
+			redirect("dash_a");
+			die();
+		} else{
+			redirect("add_a");
+			die();
+		}
+	}
+	public function dash_a()
+	{
+		$this->load->view("dash_a");
+	}
+	public function login_admin()
+	{
+		if($this->sock->login_admin())
+		{
+			redirect("dash_a");
+			die();
+		} else{
+			redirect("add_a");
+			die();
+		}
+	}
+	public function logout_a()
+	{
+		$this->session->sess_destroy();
+		redirect(base_url());
+		die();
 	}
 }
