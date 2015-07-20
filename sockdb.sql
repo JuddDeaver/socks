@@ -243,6 +243,7 @@ CREATE TABLE `products` (
   `size` varchar(255) NOT NULL,
   `style` varchar(255) NOT NULL,
   `material` varchar(255) NOT NULL,
+  `imageurl` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
@@ -294,4 +295,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-20 11:27:43
+-- Dump completed on 2015-07-20 11:41:48
