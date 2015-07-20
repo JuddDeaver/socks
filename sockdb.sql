@@ -55,8 +55,10 @@ CREATE TABLE `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,8 +83,8 @@ CREATE TABLE `billing` (
   PRIMARY KEY (`customer_id`,`address_id`),
   KEY `fk_customers_has_addresses_addresses1_idx` (`address_id`),
   KEY `fk_customers_has_addresses_customers1_idx` (`customer_id`),
-  CONSTRAINT `fk_customers_has_addresses_customers1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_customers_has_addresses_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_customers_has_addresses_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_customers_has_addresses_customers1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -110,7 +112,7 @@ CREATE TABLE `cc` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `customers_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`,`customers_id`),
   KEY `fk_cc_customers1_idx` (`customers_id`),
   CONSTRAINT `fk_cc_customers1` FOREIGN KEY (`customers_id`) REFERENCES `customers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -155,6 +157,108 @@ LOCK TABLES `customers` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `order_heads`
+--
+
+DROP TABLE IF EXISTS `order_heads`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_heads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
+  `shipping_customer_id` int(11) NOT NULL,
+  `shipping_address_id` int(11) NOT NULL,
+  `billing_customer_id` int(11) NOT NULL,
+  `billing_address_id` int(11) NOT NULL,
+  `cc_id` int(11) NOT NULL,
+  `cc_customers_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`,`shipping_customer_id`,`shipping_address_id`,`billing_customer_id`,`billing_address_id`,`customer_id`,`cc_id`,`cc_customers_id`),
+  KEY `fk_order_heads_customers_idx` (`customer_id`),
+  KEY `fk_order_heads_shipping1_idx` (`shipping_customer_id`,`shipping_address_id`),
+  KEY `fk_order_heads_billing1_idx` (`billing_customer_id`,`billing_address_id`),
+  KEY `fk_order_heads_cc1_idx` (`cc_id`,`cc_customers_id`),
+  CONSTRAINT `fk_order_heads_customers` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_heads_shipping1` FOREIGN KEY (`shipping_customer_id`, `shipping_address_id`) REFERENCES `shipping` (`customer_id`, `address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_heads_billing1` FOREIGN KEY (`billing_customer_id`, `billing_address_id`) REFERENCES `billing` (`customer_id`, `address_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_heads_cc1` FOREIGN KEY (`cc_id`, `cc_customers_id`) REFERENCES `cc` (`id`, `customers_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_heads`
+--
+
+LOCK TABLES `order_heads` WRITE;
+/*!40000 ALTER TABLE `order_heads` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_heads` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_head_id` int(11) NOT NULL,
+  `products_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(11,4) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`,`order_head_id`,`products_id`),
+  KEY `fk_order_items_order_heads1_idx` (`order_head_id`),
+  KEY `fk_order_items_products1_idx` (`products_id`),
+  CONSTRAINT `fk_order_items_order_heads1` FOREIGN KEY (`order_head_id`) REFERENCES `order_heads` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_items_products1` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_items`
+--
+
+LOCK TABLES `order_items` WRITE;
+/*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `pattern` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `size` varchar(255) NOT NULL,
+  `style` varchar(255) NOT NULL,
+  `material` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `shipping`
 --
 
@@ -162,9 +266,9 @@ DROP TABLE IF EXISTS `shipping`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shipping` (
-  `address_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  PRIMARY KEY (`address_id`,`customer_id`),
+  `address_id` int(11) NOT NULL,
+  PRIMARY KEY (`customer_id`,`address_id`),
   KEY `fk_addresses_has_customers_customers1_idx` (`customer_id`),
   KEY `fk_addresses_has_customers_addresses_idx` (`address_id`),
   CONSTRAINT `fk_addresses_has_customers_addresses` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -190,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-07-17 16:29:38
+-- Dump completed on 2015-07-20 11:27:43
