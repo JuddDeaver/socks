@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<style type="text/css">
 	* {
-		outline: red dotted 1px;
+		/*outline: red dotted 1px;*/
 	}
 	a {
 		color: black;
@@ -223,36 +223,43 @@
 				<img src="/assets/products/<?=$product_info['imageurl']?>">
 			</div>
 			<div class="product_info col s12 m5">
-				<p style="color:silver"> <?=$product_info['style']?> </p>
+				<a href="/<?=$product_info['style']?>" id="back"><p style="color:silver"><img width="10px" src="/assets/back_arrow.ico"> <?=$product_info['style']?> </p></a>
 				<form class="product" method="post" action="/cart">
-				<p>
-					<input type="text" name="name" value="<?=$product_info['name']?>" readonly>
-				</p>
-					<p style="color: grey; font-size: 25px;">
-						$<input style="font-size: 25px;" type="text" name="price" value="<?=$product_info['price']?>" readonly>
-					</p>
 					<p>
-						
-						<img width="20px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
-						<img width="20px" style="border: 1px solid silver" src="/assets/colors/blue.jpg">
-						<img width="20px" style="border: 1px solid silver" src="/assets/colors/white.jpg">
+						<input type="text" name="name" value="<?=$product_info['name']?>" readonly>
 					</p>
-					<p>Size: <input type="text" name="size" value="<?=$product_info['size']?>" readonly></p>
-					<label>Quantity</label>
-				    <p><select class="browser-default" name="quantity">
-				      <option value="" disabled selected>Choose your option</option>
-				      <option value="1">1</option>
-				      <option value="2">2</option>
-				      <option value="3">3</option>
-				    </select></p>
+						<p style="color: grey; font-size: 25px;">
+							$<input style="font-size: 25px;" type="text" name="price" value="<?=$product_info['price']?>" readonly>
+						</p>
+						<p>
+							
+							<img width="20px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+							<img width="20px" style="border: 1px solid silver" src="/assets/colors/blue.jpg">
+							<img width="20px" style="border: 1px solid silver" src="/assets/colors/white.jpg">
+						</p>
+						<label>Quantity</label>
+					    <p><select class="browser-default" name="quantity">
+					      <option value="" disabled selected>Choose your option</option>
+					      <option value="1">1</option>
+					      <option value="2">2</option>
+					      <option value="3">3</option>
+					    </select></p>
+	<?php
+		if($this->session->flashdata('messages'))
+		{
+		echo "<div class='red'>". $this->session->flashdata('messages') ."</div>";
+		}
+	?>
 					<p><button type="submit" class="waves-effect black btn-flat" style="color:white">Add to Cart</button></p>
+					<input type="hidden" name="id" value="<?=$product_info['id']?>">
+				</form>
 					<p>Details</p>
-					<p><?=$product_info['color']?>/ <?=$product_info['pattern']?>/ <?=$product_info['material']?></p>
+					<p><?=$product_info['color']?>/ <?=$product_info['pattern']?>/ <?=$product_info['material']?>/ <?=$product_info['size']?></p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 					consequat. </p>
-				</form>
+					
 			</div>
 		</div>
 		<div class="row similar">

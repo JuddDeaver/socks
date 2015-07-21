@@ -1,5 +1,5 @@
 <?php
-	var_dump($products);
+	// var_dump($products);
 ?>
 <!DOCTYPE html>
 <html>
@@ -172,6 +172,13 @@
 	}
 	.option li ul li {
 	}
+	.cart {
+		width: 250px;
+		height: 50px;
+		background-color: black;
+		float:right;
+
+	}
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -190,7 +197,7 @@
 <body>
 	<div class="menu_left">
 		<div class="middle">
-			<div class="logo_left">MATCHSOCKS</div>
+			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
 			<ul class="categories">
 				<li><a href="/mens">MENS</a></li>
 				<li><a href="#">WOMENS</a></li>
@@ -273,7 +280,18 @@
 			</div>
 
 		</div>
+	<!-- 	<ul class="pagination">
+		    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+		    <li class="active"><a href="#!">1</a></li>
+		    <li class="waves-effect"><a href="#!">2</a></li>
+		    <li class="waves-effect"><a href="#!">3</a></li>
+		    <li class="waves-effect"><a href="#!">4</a></li>
+		    <li class="waves-effect"><a href="#!">5</a></li>
+		    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+		  </ul> -->
 	</div>
+
+  
 	<div class="menu_right">
 			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
 			<div class="middle">

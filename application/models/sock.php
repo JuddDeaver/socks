@@ -75,7 +75,7 @@ class Sock extends CI_Model {
 	/////////////
 	public function fetch_mens()
 	{
-		$query = "SELECT * FROM products WHERE style = 'mens' LIMIT 0,4";
+		$query = "SELECT * FROM products WHERE style = 'mens' LIMIT 0,22";
 		return $this->db->query($query)->result_array();
 	}
 	public function fetch_product_by_id($id)

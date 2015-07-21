@@ -5,15 +5,37 @@ class Socks extends CI_Controller {
 
 	public function index()
 	{
+		// $this->session->sess_destroy();
 		$this->load->view('index');
+	}
+	public function index_2()
+	{
+		// $this->session->sess_destroy();
+		$this->load->view('index_2');
 	}
 	public function cart()
 	{
-		var_dump($this->input->post());
-		die();
-		$cart[] = $this->input->post();
-		$this->session->set_userdata('cart', $cart);
-		$this->load->view('cart');
+		// var_dump($this->input->post());
+		// die();
+		$id = $this->input->post('id');
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("quantity", "Quantity", "required");
+
+		if($this->form_validation->run() === FALSE)
+		{
+			$this->view_data["errors"] = validation_errors();
+			$errors = $this->view_data["errors"];
+			$this->session->set_flashdata('messages', $errors);
+			// die('here');
+			$this->product_info($id);
+		}
+		else {
+			$cart[] = $this->input->post();
+			$this->session->set_userdata('cart', $cart);
+			var_dump($this->session->userdata['cart']);
+			die();
+			$this->load->view('cart');
+		}
 	}
 	public function login()
 	{

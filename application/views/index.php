@@ -8,7 +8,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<style type="text/css">
 	* {
-		/*outline: red dotted 1px;*/
+		o/*utline: red dotted 1px;*/
 	}
 	a {
 		color: black;
@@ -37,6 +37,15 @@
 		}
 		.menu_right{
 			visibility: hidden;
+		}
+		.cart {
+			width: 230px;
+			height: 45px;
+			background-color: black;
+			color: white;
+			position: fixed;
+			right: 0px;
+			top: 0px;
 		}
 	}
 	@media screen and (max-width: 991px){
@@ -84,6 +93,15 @@
 			  background: #fff;
 
 		}
+		.cart {
+			width: 230px;
+			height: 45px;
+			background-color: black;
+			color: white;
+			position: fixed;
+			right: 60px;
+			top: 13px;
+		}
 
 	}
 	@media screen and (max-width: 600px){
@@ -107,6 +125,15 @@
 		.menu_icon {
 			display: inline-block;
 		}
+		.cart {
+			height: 45px;
+			background-color: black;
+			color: white;
+			position:fixed; 
+		    left:0px;
+		    bottom:0px;
+		    width:100%;
+			}
 	}
 	.middle{
 				margin: auto 30px;
@@ -137,12 +164,19 @@
 	img{
 		width: 100%;
 	}
-	/*.main_picture{
+	/*.main_search{
 		width: 100%;
 		padding: 65px;
 	}	*/
-	.main_picture{
+	.main_search{
+		margin-top: 15px;
 		padding: 0px 12px;
+		width: 100%;
+		
+	}
+	.border {
+		outline: 3px solid black;
+		padding: 10px;
 	}
 	.sub_menu{
 		margin-top: 20px;
@@ -153,6 +187,7 @@
 		right: 20px;
 		top: 20px;
 	}
+
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -166,6 +201,11 @@
 	</script>
 </head>
 <body>
+	<div class="cart">
+		<div class="row">
+			<i class="material-icons">shopping_cart</i>Cart - 8 items $1,200..
+		</div>
+	</div>
 	<div class="row">
 		<div class="menu_left">
 			<div class="middle">
@@ -186,8 +226,22 @@
 			<div class="menu_icon right"><i class="material-icons">menu</i></div>
 		</div>
 		<div class="content">
-			<div class="main_picture">
-				<a href="/mens"><img src="/assets/main_picture.jpg"></a>
+			<div class="main_search">
+				<div class="border">
+				<h5>FIND YOUR SOCK A MATCH </h5>
+				<form>
+					<div class="col s12 m6">
+						Color:
+					</div>
+					<div class="col s12 m6">
+						
+					</div>
+					
+					Size:
+					Style:
+					Brand:
+				</form>
+				</div>
 			</div>
 			<div class="row sub_menu">
 				<div class="col s12 m4"><a href="mens"><img src="/assets/mens.jpg"></a>
