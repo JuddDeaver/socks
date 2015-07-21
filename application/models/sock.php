@@ -67,12 +67,57 @@ class Sock extends CI_Model {
 		return $user;
 	}
 
-	public function get_orders()
+	public function get_orders_line_items()
 	{
-		return $this->sock->fetch_all('order_heads');
+		$query = 
+		"SELECT
+			customers.first_name AS 'First_Name',
+			customers.last_name AS 'Last_Name',
+		    customers.username AS 'Username',
+		    customers.email AS 'Email',
+		    customers.password AS 'Password',
+		    shipping.address AS 'Shipping_Address',
+		    shipping.address2 AS 'Shipping_Address2',
+		    shipping_city.city AS 'Shipping_City',
+		    shipping_state.code AS 'Shipping_State',
+		    shipping.zipcode AS 'Shipping_Zipcode',
+		    billing.address AS 'Billing_Address',
+		    billing.address2 AS 'Billing_Address2',
+		    billing_city.city AS 'Billing_City',
+		    billing_state.code AS 'Billing_State',
+		    billing.zipcode AS 'Billing_Zipcode',
+		    cc.number AS 'Credit_Card',
+		    cc.seccode AS 'Security_Code',
+		    cc.expiration AS 'Expiration',
+		    cc_types.type AS 'CC_Type',
+		    phone_numbers.number AS 'Phone_Number',
+		    products.brand AS 'Brand',
+		    products.name AS 'Name',
+		    products.color AS 'Color',
+		    products.pattern AS 'Pattern',
+		    products.size AS 'Size',
+		    products.style AS 'Style',
+		    products.material AS 'Material',
+		    order_items.quantity AS 'Quantity',
+			order_items.price AS 'Price'
+		    
+		FROM order_heads
+		JOIN order_items ON order_heads.id = order_items.order_head_id
+		JOIN customers ON order_heads.customer_id = customers.id
+		JOIN addresses AS shipping ON order_heads.shipping_address_id = shipping.id
+		JOIN addresses AS billing ON order_heads.billing_address_id = billing.id
+		JOIN cc ON order_heads.cc_id = cc.id
+		JOIN phone_numbers ON order_heads.phone_id = phone_numbers.id
+		JOIN cities AS shipping_city ON shipping.city_id = shipping_city.id
+		JOIN cities AS billing_city ON billing.city_id = billing_city.id
+		JOIN states AS shipping_state ON shipping.state_id = shipping_state.id
+		JOIN states AS billing_state ON billing.state_id = billing_state.id
+		JOIN cc_types ON cc.cc_type_id = cc_types.id
+		JOIN products ON order_items.product_id = products.id";
+
+		return $this->db->query($query)->result_array();
 	}
 
-	/////////////
 	public function fetch_mens()
 	{
 		$query = "SELECT * FROM products WHERE style = 'mens' LIMIT 0,22";
@@ -83,5 +128,67 @@ class Sock extends CI_Model {
 		$query = "SELECT * FROM products WHERE id = $id";
 		return $this->db->query($query)->row_array();
 	}
+	public function get_order_heads()
+	{
+		$query = 
+		"SELECT
+			order_heads.id AS 'Order_id',
+			customers.first_name AS 'First_Name',
+			customers.last_name AS 'Last_Name',
+		    customers.username AS 'Username',
+		    customers.email AS 'Email',
+		    phone_numbers.number AS 'Phone_Number',
+		    cc.number AS 'Credit_Card',
+		    cc.seccode AS 'Security_Code',
+		    cc.expiration AS 'Expiration',
+		    cc_types.type AS 'CC_Type',
+		    shipping.address AS 'Shipping_Address',
+		    shipping.address2 AS 'Shipping_Address2',
+		    shipping_city.city AS 'Shipping_City',
+		    shipping_state.code AS 'Shipping_State',
+		    shipping.zipcode AS 'Shipping_Zipcode',
+		    billing.address AS 'Billing_Address',
+		    billing.address2 AS 'Billing_Address2',
+		    billing_city.city AS 'Billing_City',
+		    billing_state.code AS 'Billing_State',
+		    billing.zipcode AS 'Billing_Zipcode',
+			Sum(order_items.price) AS 'Order_Total'
+		    
+		FROM order_heads
+			JOIN order_items ON order_heads.id = order_items.order_head_id
+			JOIN customers ON order_heads.customer_id = customers.id
+			JOIN addresses AS shipping ON order_heads.shipping_address_id = shipping.id
+			JOIN addresses AS billing ON order_heads.billing_address_id = billing.id
+			JOIN cc ON order_heads.cc_id = cc.id
+			JOIN phone_numbers ON order_heads.phone_id = phone_numbers.id
+			JOIN cities AS shipping_city ON shipping.city_id = shipping_city.id
+			JOIN cities AS billing_city ON billing.city_id = billing_city.id
+			JOIN states AS shipping_state ON shipping.state_id = shipping_state.id
+			JOIN states AS billing_state ON billing.state_id = billing_state.id
+			JOIN cc_types ON cc.cc_type_id = cc_types.id
+		GROUP BY order_heads.id";
 
+		return $this->db->query($query)->result_array();
+	}
+	public function get_order_items($id)
+	{
+		$query = 
+			"SELECT
+				products.id AS 'Product_id',
+			    products.brand AS 'Brand',
+			    products.name AS 'Name',
+			    products.color AS 'Color',
+			    products.pattern AS 'Pattern',
+			    products.size AS 'Size',
+			    products.style AS 'Style',
+			    products.material AS 'Material',
+			    order_items.quantity AS 'Quantity',
+				order_items.price AS 'Price'
+			    
+			FROM order_items
+			JOIN products ON order_items.product_id = products.id
+			WHERE order_items.order_head_id = $id";
+
+		return $this->db->query($query)->result_array();
+	}
 }

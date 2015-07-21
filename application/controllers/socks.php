@@ -87,6 +87,10 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view("dash_a");
 	}
+	public function items_a($id)
+	{
+		$this->load->view("items_a", array('id' => $id));
+	}
 	public function login_admin()
 	{
 		if($this->sock->login_admin())

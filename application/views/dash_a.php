@@ -27,21 +27,65 @@
 		?>​</h1>
 
 		<div>
+			<table class="hoverable">
+				<thead>
+					<tr>
+						<th data-field='First_Name'>First Name</th>
+						<th data-field='Last_Name'>Last Name</th>
+					    <th data-field='Username'>Username</th>
+					    <th data-field='Email'>Email</th>
+					    <th data-field='Phone_Number'>Phone Number</th>
+		    			<th data-field='Credit_Card'>Credit Card</th>
+					    <th data-field='Security_Code'>Security Code</th>
+					    <th data-field='Expiration'>Expiration</th>
+					    <th data-field='CC_Type'>CC Type</th>
+					    <th data-field='Shipping_Address'>Shipping Address</th>
+					    <th data-field='Shipping_Address2'>Shipping Address2</th>
+					    <th data-field='Shipping_City'>Shipping City</th>
+					    <th data-field='Shipping_State'>Shipping State</th>
+					    <th data-field='Shipping_Zipcode'>Shipping Zipcode</th>
+					    <th data-field='Billing_Address'>Billing Address</th>
+					    <th data-field='Billing_Address2'>Billing Address2</th>
+					    <th data-field='Billing_City'>Billing City</th>
+					    <th data-field='Billing_State'>Billing State</th>
+					    <th data-field='Billing_Zipcode'>Billing Zipcode</th>
+						<th data-field='Order_Total'>Order Total</th>
+					</tr>
+				</thead>
+				<tbody>
 <?php
-			$orders = $this->sock->get_orders();
-			foreach ($orders as $order)
-			{
+				$orders = $this->sock->get_order_heads();
+				foreach ($orders as $order)
+				{
 ?>				
-				<h3><?= $order['customer_id']; ?> </h3>
-				<h3><?= $order['shipping_address_id']; ?> </h3>
-				<h3><?= $order['billing_address_id']; ?> </h3>
-				<h3><?= $order['created_at']; ?> </h3>
-				<h3><?= $order['updated_at']; ?> </h3>
-				<h3><?= $order['cc_id']; ?> </h3>
-				<h3><?= $order['phone_id']; ?> </h3>
+						<tr>
+							<td><a href="items_a/<?= $order['Order_id']; ?>"><?= $order['First_Name']; ?></a></td>
+							<td><?= $order['Last_Name']; ?> </td>
+						    <td><?= $order['Username']; ?> </td>
+						    <td><?= $order['Email']; ?> </td>
+						    <td><?= $order['Phone_Number']; ?> </td>
+						    <td><?= $order['Credit_Card']; ?> </td>
+						    <td><?= $order['Security_Code']; ?> </td>
+						    <td><?= $order['Expiration']; ?> </td>
+						    <td><?= $order['CC_Type']; ?> </td>
+						    <td><?= $order['Shipping_Address']; ?> </td>
+						    <td><?= $order['Shipping_Address2']; ?> </td>
+						    <td><?= $order['Shipping_City']; ?> </td>
+						    <td><?= $order['Shipping_State']; ?> </td>
+						    <td><?= $order['Shipping_Zipcode']; ?> </td>
+						    <td><?= $order['Billing_Address']; ?> </td>
+						    <td><?= $order['Billing_Address2']; ?> </td>
+						    <td><?= $order['Billing_City']; ?> </td>
+						    <td><?= $order['Billing_State']; ?> </td>
+						    <td><?= $order['Billing_Zipcode']; ?> </td>
+							<td><?= $order['Order_Total']; ?> </td>
+					</a>
+						</tr>
 <?php
-			}
+				}
 ?>
+				</tbody>
+			</table>
 		</div>
 
 	</div>
