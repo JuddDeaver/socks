@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'socks';
 $route['cart'] = 'socks/cart';
 $route['login'] = 'socks/login';
-$route['product_info'] = 'socks/Product_info';
+$route['product_info/(:any)'] = 'socks/product_info/$1';
 $route['index_2'] = 'socks/index_2';
 $route['index_3'] = 'socks/index_3';
 $route['mens'] = 'socks/mens';

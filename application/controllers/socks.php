@@ -9,8 +9,8 @@ class Socks extends CI_Controller {
 	}
 	public function cart()
 	{
-		// var_dump($this->input->post());
-		// die();
+		var_dump($this->input->post());
+		die();
 		$cart[] = $this->input->post();
 		$this->session->set_userdata('cart', $cart);
 		$this->load->view('cart');
@@ -19,13 +19,15 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
-	public function product_info()
+	public function product_info($id)
 	{
-		$this->load->view('Product_info');
+		$product_info = $this->sock->fetch_product_by_id($id);
+		$this->load->view('product_info', array('product_info' => $product_info));
 	}
 	public function mens()
 	{
-		$this->load->view('mens');
+		$products = $this->sock->fetch_mens();
+		$this->load->view('mens', array('products' => $products));
 	}
 	public function payment()
 	{

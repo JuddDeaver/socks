@@ -72,5 +72,16 @@ class Sock extends CI_Model {
 		return $this->sock->fetch_all('order_heads');
 	}
 
+	/////////////
+	public function fetch_mens()
+	{
+		$query = "SELECT * FROM products WHERE style = 'mens' LIMIT 0,4";
+		return $this->db->query($query)->result_array();
+	}
+	public function fetch_product_by_id($id)
+	{
+		$query = "SELECT * FROM products WHERE id = $id";
+		return $this->db->query($query)->row_array();
+	}
 
 }

@@ -1,3 +1,6 @@
+<?php
+// var_dump($product_info);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -217,23 +220,24 @@
 	<div class="content">
 		<div class="row">
 			<div class="product_picture col s12 m7">
-				<img src="/assets/redbluewhite_stripes.jpg">
+				<img src="/assets/products/<?=$product_info['imageurl']?>">
 			</div>
 			<div class="product_info col s12 m5">
-				<p style="color:silver"> Mens </p>
-				<form class="product" method="post" action="cart">
+				<p style="color:silver"> <?=$product_info['style']?> </p>
+				<form class="product" method="post" action="/cart">
 				<p>
-					<input type="text" name="name" value="PATRIOTISM" readonly>
+					<input type="text" name="name" value="<?=$product_info['name']?>" readonly>
 				</p>
 					<p style="color: grey; font-size: 25px;">
-						$<input style="font-size: 25px;" type="text" name="price" value="0.69" readonly>
+						$<input style="font-size: 25px;" type="text" name="price" value="<?=$product_info['price']?>" readonly>
 					</p>
 					<p>
+						
 						<img width="20px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
 						<img width="20px" style="border: 1px solid silver" src="/assets/colors/blue.jpg">
 						<img width="20px" style="border: 1px solid silver" src="/assets/colors/white.jpg">
 					</p>
-					<p>Size: <input type="text" name="size" value="M" readonly></p>
+					<p>Size: <input type="text" name="size" value="<?=$product_info['size']?>" readonly></p>
 					<label>Quantity</label>
 				    <p><select class="browser-default" name="quantity">
 				      <option value="" disabled selected>Choose your option</option>
@@ -243,12 +247,11 @@
 				    </select></p>
 					<p><button type="submit" class="waves-effect black btn-flat" style="color:white">Add to Cart</button></p>
 					<p>Details</p>
+					<p><?=$product_info['color']?>/ <?=$product_info['pattern']?>/ <?=$product_info['material']?></p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					consequat. </p>
 				</form>
 			</div>
 		</div>

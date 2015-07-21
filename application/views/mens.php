@@ -1,3 +1,6 @@
+<?php
+	var_dump($products);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -250,26 +253,19 @@
 			</form>
 		</div>
 		<div class="row pictures">
+<?php foreach($products as $product)
+{
+?>
 			<div class="col s6 m3">
-				<img src="/assets/redbluewhite_stripes.jpg">
-				<p>FORMAL STRIPE</p>
-				<p class="price">$0.69</p>
+				<a href="/product_info/<?=$product['id']?>">
+				<img src="/assets/products/<?=$product['imageurl']?>">
+				<p><?=$product['name']?></p>
+				<p class="price">$<?=$product['price']?></p>
+				</a>
 			</div>
-			<div class="col s6 m3">
-				<img src="/assets/orangegray_ripples.jpg">
-				<p>PAINT DRIP</p>
-				<p class="price">$0.39</p>
-			</div>
-			<div class="col s6 m3">	
-				<img src="/assets/block_wool.jpg">
-				<p>name</p>
-				<p class="price">$0.49</p>
-			</div>
-			<div class="col s6 m3">
-				<img src="/assets/happy_colorful.jpg">
-				<p>name</p>
-				<p class="price">price</p>
-			</div>
+<?php
+}
+?>
 			<div class="col s6 m3">
 				<img src="/assets/grey.png">
 				<p>name</p>
