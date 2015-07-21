@@ -49,10 +49,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+////CUSTOMERS////
 $route['default_controller'] = 'socks';
+$route['cart'] = 'socks/cart';
+$route['login'] = 'socks/login';
+$route['product_info'] = 'socks/Product_info';
+$route['index_2'] = 'socks/index_2';
+$route['index_3'] = 'socks/index_3';
+$route['mens'] = 'socks/mens';
+$route['payment'] = 'socks/payment';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+////ADMIN/////
 $route['login_a'] = 'socks/login_a';
+$route['index_a'] = 'socks/index_a';
 $route['logout_a'] = 'socks/logout_a';
 $route['add_a'] = 'socks/add_a';
 $route['dash_a'] = 'socks/dash_a';

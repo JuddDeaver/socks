@@ -2,13 +2,16 @@
 <html>
 <head>
 	<title>MatchSocks</title>
-	<link rel="stylesheet" href="/assets/css/materialize.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<style type="text/css">
 	* {
 		/*outline: red dotted 1px;*/
+	}
+	body {
+		background-color: #fff;
 	}
 	a {
 		color: black;
@@ -157,10 +160,10 @@
 	<script>
 		$(document).ready(function(){
 		    $(".menu_icon").click(function(){
-		        $(".menu_right").animate({width: 'toggle'}, 200);
+		        $(".menu_right").toggle();
 		    });
 		    $(".close img").click(function(){
-		        $(".menu_right").animate({width: 'toggle'}, 200);
+		        $(".menu_right").toggle();
 		    });
 		});
 	</script>
@@ -186,18 +189,42 @@
 			<div class="menu_icon right"><i class="material-icons">menu</i></div>
 		</div>
 		<div class="content">
-			<div class="main_picture">
-				<a href="/mens"><img src="/assets/main_picture.jpg"></a>
-			</div>
-			<div class="row sub_menu">
-				<div class="col s12 m4"><a href="mens"><img src="/assets/mens.jpg"></a>
+			<div class="row">
+				<div class="col s12 m6">
+					<div class=""></div>
+					<h5>Contact & Shipping</h5>
+					<!-- <img src="/assets/mens.jpg"> -->
+					<div class="row">
+					    <form class="col s12">
+					      <div class="row">
+					        <div class="input-field col s6">
+					          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+					          <label for="first_name">First Name</label>
+					        </div>
+					        <div class="input-field col s6">
+					          <input id="last_name" type="text" class="validate">
+					          <label for="last_name">Last Name</label>
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input id="password" type="password" class="validate">
+					          <label for="password">Password</label>
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input id="email" type="email" class="validate">
+					          <label for="email">Email</label>
+					        </div>
+					      </div>
+					    </form>
+					  </div>
 				</div>
-				<div class="col s12 m4"><a href="womens"><img src="/assets/womens.jpg"></a></div>
-				<div class="col s12 m4"><a href="kids"><img src="/assets/kids.jpg"></a></div>	
-			</div>
-			<div class="row sub_menu">
-				<div class="col s12 m6"><a href="/about"><img src="/assets/menu_pic2.jpg"></a></div>
-				<div class="col s12 m6"><a href="/news"><img src="/assets/menu_pic1.jpg"></a></div>
+				<div class="col s12 m6">
+					<h5>Order Summary</h5>
+					<!-- <img src="/assets/womens.jpg"> -->
+				</div>
 			</div>
 		</div>
 		<div class="menu_right">

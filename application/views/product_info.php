@@ -8,7 +8,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<style type="text/css">
 	* {
-		/*outline: red dotted 1px;*/
+		outline: red dotted 1px;
 	}
 	a {
 		color: black;
@@ -134,16 +134,16 @@
 			.sub-categories a{
 				color: grey;
 			}
-	img{
+	.pictures img{
 		width: 100%;
 	}
 	/*.main_picture{
 		width: 100%;
 		padding: 65px;
 	}	*/
-	.main_picture{
+/*	.main_picture{
 		padding: 0px 12px;
-	}
+	}*/
 	.sub_menu{
 		margin-top: 20px;
 	}
@@ -152,6 +152,32 @@
 		position: absolute;
 		right: 20px;
 		top: 20px;
+	}
+	.content h5 {
+		padding: 0 10px;
+	}
+	.price {
+		color: gray;
+		line-height: 19px;
+	}
+	.option {
+		padding-left: 0px;
+		margin: 0 10px;
+	}
+	.option ul {
+		display: none;
+	}
+	.option li ul li {
+	}
+	.similar img {
+		width: 100%;
+	}
+	.product_picture img {
+		width: 100%;
+	}
+	.product input {
+		border: none;
+		display: inline-block;
 	}
 	</style>
 	<script>
@@ -162,45 +188,82 @@
 		    $(".close img").click(function(){
 		        $(".menu_right").animate({width: 'toggle'}, 200);
 		    });
+		    $( ".option li" ).click(function() {
+			  $( ".option ul" ).toggle(200);
+			});
 		});
 	</script>
 </head>
 <body>
-	<div class="row">
-		<div class="menu_left">
-			<div class="middle">
-				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-				<ul class="categories">
-					<li><a href="/mens">MENS</a></li>
-					<li><a href="/womens">WOMENS</a></li>
-					<li><a href="/kids">KIDS</a></li>
-				</ul>
-				<ul class="sub-categories">
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>	
-		</div>
-		<div class="menu_top">
-			<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
-			<div class="menu_icon right"><i class="material-icons">menu</i></div>
-		</div>
-		<div class="content">
-			<div class="main_picture">
-				<a href="/mens"><img src="/assets/main_picture.jpg"></a>
+	<div class="menu_left">
+		<div class="middle">
+			<div class="logo_left">MATCHSOCKS</div>
+			<ul class="categories">
+				<li><a href="/mens">MENS</a></li>
+				<li><a href="#">WOMENS</a></li>
+				<li><a href="#">KIDS</a></li>
+			</ul>
+			<ul class="sub-categories">
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>	
+	</div>
+	<div class="menu_top">
+		<div class="logo_top">MATCHSOCKS</div>
+		<div class="menu_icon right"><i class="material-icons">menu</i></div>
+
+	</div>
+	<div class="content">
+		<div class="row">
+			<div class="product_picture col s12 m7">
+				<img src="/assets/redbluewhite_stripes.jpg">
 			</div>
-			<div class="row sub_menu">
-				<div class="col s12 m4"><a href="mens"><img src="/assets/mens.jpg"></a>
-				</div>
-				<div class="col s12 m4"><a href="womens"><img src="/assets/womens.jpg"></a></div>
-				<div class="col s12 m4"><a href="kids"><img src="/assets/kids.jpg"></a></div>	
-			</div>
-			<div class="row sub_menu">
-				<div class="col s12 m6"><a href="/about"><img src="/assets/menu_pic2.jpg"></a></div>
-				<div class="col s12 m6"><a href="/news"><img src="/assets/menu_pic1.jpg"></a></div>
+			<div class="product_info col s12 m5">
+				<p style="color:silver"> Mens </p>
+				<form class="product" method="post" action="cart">
+				<p>
+					<input type="text" name="name" value="PATRIOTISM" readonly>
+				</p>
+					<p style="color: grey; font-size: 25px;">
+						$<input style="font-size: 25px;" type="text" name="price" value="0.69" readonly>
+					</p>
+					<p>
+						<img width="20px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+						<img width="20px" style="border: 1px solid silver" src="/assets/colors/blue.jpg">
+						<img width="20px" style="border: 1px solid silver" src="/assets/colors/white.jpg">
+					</p>
+					<p>Size: <input type="text" name="size" value="M" readonly></p>
+					<label>Quantity</label>
+				    <p><select class="browser-default" name="quantity">
+				      <option value="" disabled selected>Choose your option</option>
+				      <option value="1">1</option>
+				      <option value="2">2</option>
+				      <option value="3">3</option>
+				    </select></p>
+					<p><button type="submit" class="waves-effect black btn-flat" style="color:white">Add to Cart</button></p>
+					<p>Details</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</form>
 			</div>
 		</div>
-		<div class="menu_right">
+		<div class="row similar">
+			<h5>SIMILAR ITEMS</h5>
+			<div class="col s4 m2"><img src="/assets/grey.png"></div>
+			<div class="col s4 m2"><img src="/assets/grey.png"></div>
+			<div class="col s4 m2"><img src="/assets/grey.png"></div>	
+			<div class="col s4 m2"><img src="/assets/grey.png"></div>	
+			<div class="col s4 m2"><img src="/assets/grey.png"></div>	
+			<div class="col s4 m2"><img src="/assets/grey.png"></div>	
+		</div>
+		
+	</div>
+	<div class="menu_right">
 			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
 			<div class="middle">
 				<div class="logo_left">MATCHSOCKS</div>
@@ -214,7 +277,8 @@
 					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</div>
-		</div>
+		</div>	
 	</div>
 </body>
 </html>
+<body>

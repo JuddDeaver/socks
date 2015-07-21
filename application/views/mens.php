@@ -134,16 +134,16 @@
 			.sub-categories a{
 				color: grey;
 			}
-	img{
+	.pictures img{
 		width: 100%;
 	}
 	/*.main_picture{
 		width: 100%;
 		padding: 65px;
 	}	*/
-	.main_picture{
+/*	.main_picture{
 		padding: 0px 12px;
-	}
+	}*/
 	.sub_menu{
 		margin-top: 20px;
 	}
@@ -152,6 +152,22 @@
 		position: absolute;
 		right: 20px;
 		top: 20px;
+	}
+	.content h5 {
+		padding: 0 10px;
+	}
+	.price {
+		color: gray;
+		line-height: 19px;
+	}
+	.option {
+		padding-left: 0px;
+		margin: 0 10px;
+	}
+	.option ul {
+		display: none;
+	}
+	.option li ul li {
 	}
 	</style>
 	<script>
@@ -162,45 +178,107 @@
 		    $(".close img").click(function(){
 		        $(".menu_right").animate({width: 'toggle'}, 200);
 		    });
+		    $( ".option li" ).click(function() {
+			  $( ".option ul" ).toggle(200);
+			});
 		});
 	</script>
 </head>
 <body>
-	<div class="row">
-		<div class="menu_left">
-			<div class="middle">
-				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-				<ul class="categories">
-					<li><a href="/mens">MENS</a></li>
-					<li><a href="/womens">WOMENS</a></li>
-					<li><a href="/kids">KIDS</a></li>
-				</ul>
-				<ul class="sub-categories">
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>	
+	<div class="menu_left">
+		<div class="middle">
+			<div class="logo_left">MATCHSOCKS</div>
+			<ul class="categories">
+				<li><a href="/mens">MENS</a></li>
+				<li><a href="#">WOMENS</a></li>
+				<li><a href="#">KIDS</a></li>
+			</ul>
+			<ul class="sub-categories">
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>	
+	</div>
+	<div class="menu_top">
+		<div class="logo_top">MATCHSOCKS</div>
+		<div class="menu_icon right"><i class="material-icons">menu</i></div>
+
+	</div>
+	<div class="content">
+		<h5>MENS</h5>
+		<div class="row">
+			<form>
+			<ul class="option collection">
+				<li class="collection-item">Price</li>
+					<ul >
+						<li class="collection-item">Inside Price</li>
+					</ul>
+				<li class="collection-item">Size</li>
+					<ul>
+						<li>Inside Size</li>
+					</ul>
+				<li class="collection-item">Color</li>
+					<ul>
+						<li></li>
+					</ul>
+				<li class="collection-item">Brand</li>
+					<ul>
+						<li></li>
+					</ul>
+				<!-- <li class="col s12 color">Color</li>
+				<li class="">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/blue.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+					<img width="15px" style="border: 1px solid silver" src="/assets/colors/red.jpg">
+				</li>
+				<li class="col s6">
+					<p class="range-field">
+				      <input type="range" id="test5" min="0" max="15" />
+				    </p>
+				</li>
+				<li class="col s12">Size</li>
+				<li class="col s12">Brand</li>
+				<li class="col s12">Price</li> -->
+			</ul>
+			</form>
 		</div>
-		<div class="menu_top">
-			<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
-			<div class="menu_icon right"><i class="material-icons">menu</i></div>
+		<div class="row pictures">
+			<div class="col s6 m3">
+				<img src="/assets/redbluewhite_stripes.jpg">
+				<p>FORMAL STRIPE</p>
+				<p class="price">$0.69</p>
+			</div>
+			<div class="col s6 m3">
+				<img src="/assets/orangegray_ripples.jpg">
+				<p>PAINT DRIP</p>
+				<p class="price">$0.39</p>
+			</div>
+			<div class="col s6 m3">	
+				<img src="/assets/block_wool.jpg">
+				<p>name</p>
+				<p class="price">$0.49</p>
+			</div>
+			<div class="col s6 m3">
+				<img src="/assets/happy_colorful.jpg">
+				<p>name</p>
+				<p class="price">price</p>
+			</div>
+			<div class="col s6 m3">
+				<img src="/assets/grey.png">
+				<p>name</p>
+				<p class="price">price</p>
+			</div>
+
 		</div>
-		<div class="content">
-			<div class="main_picture">
-				<a href="/mens"><img src="/assets/main_picture.jpg"></a>
-			</div>
-			<div class="row sub_menu">
-				<div class="col s12 m4"><a href="mens"><img src="/assets/mens.jpg"></a>
-				</div>
-				<div class="col s12 m4"><a href="womens"><img src="/assets/womens.jpg"></a></div>
-				<div class="col s12 m4"><a href="kids"><img src="/assets/kids.jpg"></a></div>	
-			</div>
-			<div class="row sub_menu">
-				<div class="col s12 m6"><a href="/about"><img src="/assets/menu_pic2.jpg"></a></div>
-				<div class="col s12 m6"><a href="/news"><img src="/assets/menu_pic1.jpg"></a></div>
-			</div>
-		</div>
-		<div class="menu_right">
+	</div>
+	<div class="menu_right">
 			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
 			<div class="middle">
 				<div class="logo_left">MATCHSOCKS</div>
@@ -215,6 +293,10 @@
 				</ul>
 			</div>
 		</div>
+
+			
+
+		
 	</div>
 </body>
 </html>
