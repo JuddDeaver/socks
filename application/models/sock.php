@@ -67,6 +67,10 @@ class Sock extends CI_Model {
 		return $user;
 	}
 
+	public function get_orders()
+	{
+		return $this->sock->fetch_all('order_heads');
+	}
 
 
 }
