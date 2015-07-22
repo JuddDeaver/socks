@@ -11,7 +11,7 @@
 	<div class="wrapper">
 		<nav>
 			<div class="nav-wrapper">
-				<a href="dash_a" class="brand-logo">Dashboard</a>
+				<a href="/dash_a" class="brand-logo">Dashboard</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li class="active"><a href="orders_a">Orders</a></li>
 					<li><a href="products_a">Products</a></li>
@@ -30,6 +30,7 @@
 			<table class="hoverable">
 				<thead>
 					<tr>
+						<th data-field='Order_id'>Order id</th>
 						<th data-field='First_Name'>First Name</th>
 						<th data-field='Last_Name'>Last Name</th>
 					    <th data-field='Username'>Username</th>
@@ -59,8 +60,9 @@
 				{
 ?>				
 						<tr>
-							<td><a href="items_a/<?= $order['Order_id']; ?>"><?= $order['First_Name']; ?></a></td>
-							<td><?= $order['Last_Name']; ?> </td>
+							<td><a href="items_a/<?= $order['Order_id']; ?>">Order Details</a></td>
+							<td><?= $order['First_Name']; ?> </td>
+						    <td><?= $order['Last_Name']; ?> </td>
 						    <td><?= $order['Username']; ?> </td>
 						    <td><?= $order['Email']; ?> </td>
 						    <td><?= $order['Phone_Number']; ?> </td>

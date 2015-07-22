@@ -11,7 +11,7 @@
 	<div class="wrapper">
 		<nav>
 			<div class="nav-wrapper">
-				<a href="dash_a" class="brand-logo">Dashboard</a>
+				<a href="/dash_a" class="brand-logo">Dashboard</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li class="active"><a href="orders_a">Orders</a></li>
 					<li><a href="products_a">Products</a></li>

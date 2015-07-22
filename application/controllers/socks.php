@@ -111,6 +111,10 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view("dash_a");
 	}
+	public function products_a()
+	{
+		$this->load->view("products_a");
+	}
 	public function items_a($id)
 	{
 		$this->load->view("items_a", array('id' => $id));

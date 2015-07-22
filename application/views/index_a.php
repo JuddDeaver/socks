@@ -9,12 +9,6 @@
 <body>
 	<a href="login_a" class="btn waves-effect waves-light" type="login" name="admin">Admin Login</a>
 	<a href="logout_a" class="btn waves-effect waves-light" type="logout" name="admin">Admin Logout</a>
-<?PHP
-	if(isset($this->session->userdata['user_session']))
-{
-	var_dump($this->session->userdata['user_session']);
-}
-?>
 <h1><?php
 	if($this->session->flashdata("errors"))
 	{
