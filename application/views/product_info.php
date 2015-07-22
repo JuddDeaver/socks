@@ -206,7 +206,7 @@ $display_colors = explode(',', $colors);
 					foreach ($display_colors as $color)
 					{
 					?>
-						<img width="20px" style="border: 1px solid silver" src="/assets/colors/<?=$color?>.jpg">
+						<img width="20px" style="border: 1px solid silver" src="/assets/colors/<?=$i?>.jpg">
 					<?php
 				}
 				?>

@@ -26,6 +26,9 @@ if($this->session->userdata('cart'))
 	img{
 		width: 100%;
 	}
+	.color img {
+		width: 15px;
+	}
 	/*.main_search{
 		width: 100%;
 		padding: 65px;
@@ -115,7 +118,18 @@ if($this->session->userdata('cart'))
 						<ul class="collapsible z-depth-1" data-collapsible="accordion">
 						    <li>
 						      <div class="collapsible-header">Color</div>
-						      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+						      <div class="collapsible-body">
+						      <p class="color">
+						      	<?php
+						      	for($i = 1; $i < 14; $i++)
+						      	{
+						      		?>
+						      		<img width="20px" style="border: 1px solid silver" src="/assets/colors/<?=$i?>.jpg">
+						      	<?php
+						      	}
+						      	?>
+						      </p>
+						      </div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header">Pattern</div>
