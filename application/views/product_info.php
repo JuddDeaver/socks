@@ -6,7 +6,7 @@ if($this->session->userdata('cart'))
 	$total = 0;
 	foreach ($cart_infos as $info)
 	{
-		$total = $total + ($info['price'] * $info['quantity']);
+		$total = $total + number_format(($info['price'] * $info['quantity']), 2);
 	}
 }
 // var_dump($product_info);
@@ -129,7 +129,7 @@ $display_colors = explode(',', $colors);
 			  $( ".option ul" ).toggle(200);
 			});
 			$(".cart").click(function() {
-		    	window.location='view_cart';
+		    	window.location='/view_cart';
 		    });
 		    $(".back").click(function() {
 		    	window.location='/<?=$product_info['style']?>';
@@ -142,7 +142,7 @@ $display_colors = explode(',', $colors);
 {
 ?>
 	<div class="cart valign-wrapper">
-	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=count($cart_infos)?>items <b>$<?=$total?>..</b></p>
+	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=count($cart_infos)?> items <b>$<?=$total?></b></p>
 	</div>
 <?
 }

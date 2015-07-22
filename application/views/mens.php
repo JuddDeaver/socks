@@ -6,7 +6,7 @@ if($this->session->userdata('cart'))
 	$total = 0;
 	foreach ($cart_infos as $info)
 	{
-		$total = $total + ($info['price'] * $info['quantity']);
+		$total = $total + number_format(($info['price'] * $info['quantity']), 2);
 	}
 }
 	// echo $total;
@@ -76,7 +76,7 @@ if($this->session->userdata('cart'))
 			  $( ".option ul" ).toggle(200);
 			});
 			$(".cart").click(function() {
-		    	window.location='view_cart';
+		    	window.location='/view_cart';
 		    });
 		});
 	</script>
@@ -86,7 +86,7 @@ if($this->session->userdata('cart'))
 {
 ?>
 	<div class="cart valign-wrapper">
-	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=count($cart_infos)?>items <b>$<?=$total?>..</b></p>
+	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=count($cart_infos)?> items <b>$<?=$total?></b></p>
 	</div>
 <?
 }
