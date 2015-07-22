@@ -1,5 +1,12 @@
 <?php
-// var_dump($product_info);
+	// var_dump($this->session->userdata('cart'));
+	$cart_infos = $this->session->userdata('cart');
+	$total = 0;
+	foreach ($cart_infos as $info)
+	{
+		$total = $total + ($info['price'] * $info['quantity']);
+	}
+	// echo $total;
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,134 +16,12 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/style.css">
 	<style type="text/css">
 	* {
 		/*outline: red dotted 1px;*/
 	}
-	a {
-		color: black;
-	}
-	html, body {
-	    height: 100%;
-	    margin: 0;
-	}
-	@media screen and (min-width: 992px){
-		.menu_left {
-	    width: 20%;
-	    height: 100%;
-	    position: fixed;
-		}
-		.content {
-		    width: 80%;
-		    height: auto;
-		    position: absolute;
-		    right: 0;
-		    padding: 0px 65px;
-		    margin-top: 60px;
-		}
-		.menu_top{
-			visibility: hidden;
-			height: 0px;
-		}
-		.menu_right{
-			visibility: hidden;
-		}
-	}
-	@media screen and (max-width: 991px){
-		.menu_top {
-			padding: 20px;
-		}
-		.content{
-			padding: 0 10px;
-			float: right;
-		}
-		.menu_left{
-			visibility: hidden;
-			height: 0px;
-		}
-		.categories{
-				margin-top: 0px !important;
-			}
-		.logo_top {
-			width: 100px;
-			display: inline-block;
-		}
-		.menu_icon {
-			display: inline-block;
-			position: relative;
-		  	top: 0px;
-  			right: -2px;
-		}
-		.menu_right {
-			display: none;
-			width: 250px;
-			position: absolute;
-			right: 0px;
-			float: right;	
-			opacity: 1;
-			  overflow-x: hidden;
-			  overflow-y: auto;
-			  box-sizing: border-box;
-			  position: fixed;
-			  top: 0;
-			  right: 0;
-			  bottom: 0;
-			  z-index: 1;
-			  width: 240px;
-			  padding: 50px 0 40px;
-			  background: #fff;
-
-		}
-
-	}
-	@media screen and (max-width: 600px){
-		.menu_top {
-			padding: 20px 10px;
-		}
-		.content{
-			padding: 0px;
-		}
-		.menu_left{
-			visibility: hidden;
-			height: 0px;
-		}
-		.categories{
-				margin-top: 0px !important;
-			}
-		.logo_top {
-			width: 100px;
-			display: inline-block;
-		}
-		.menu_icon {
-			display: inline-block;
-		}
-	}
-	.middle{
-				margin: auto 30px;
-				padding: 10% 0 0 10%;
-				position: absolute;
-	   			top: 25%;
-				}
-			.categories{
-				margin-top: 30px;
-			}
-			.categories a{
-				color: black;
-			}
-			.categories li {
-				letter-spacing: 5px;
-				font-size: 12px;
-				line-height: 25px;
-			}
-			.sub-categories{
-				margin-top: 30px;
-				color: grey;
-				font-size: 13px;
-				line-height: 25px;
-			}
-			.sub-categories a{
-				color: grey;
-			}
+	
 	.pictures img{
 		width: 100%;
 	}
@@ -194,10 +79,25 @@
 		    $( ".option li" ).click(function() {
 			  $( ".option ul" ).toggle(200);
 			});
+			$(".cart").click(function() {
+		    	window.location='view_cart';
+		    });
+		    $(".back").click(function() {
+		    	window.location='/<?=$product_info['style']?>';
+		    });
 		});
 	</script>
 </head>
 <body>
+	<?php if($this->session->userdata('cart'))
+{
+?>
+	<div class="cart valign-wrapper">
+	  <p><i class="material-icons small">shopping_cart</i> Cart - <?=count($cart_infos)?>items <b>$<?=$total?>..</b></p>
+	</div>
+<?
+}
+?>
 	<div class="menu_left">
 		<div class="middle">
 			<div class="logo_left">MATCHSOCKS</div>
@@ -223,7 +123,9 @@
 				<img src="/assets/products/<?=$product_info['imageurl']?>">
 			</div>
 			<div class="product_info col s12 m5">
-				<a href="/<?=$product_info['style']?>" id="back"><p style="color:silver"><img width="10px" src="/assets/back_arrow.ico"> <?=$product_info['style']?> </p></a>
+				<div class="back valign-wrapper">
+				 	<p style="color:silver"><i class="material-icons tiny">chevron_left</i> <?=$product_info['style']?></p>
+				</div>
 				<form class="product" method="post" action="/cart">
 					<p>
 						<input type="text" name="name" value="<?=$product_info['name']?>" readonly>
@@ -247,7 +149,7 @@
 	<?php
 		if($this->session->flashdata('messages'))
 		{
-		echo "<div class='red'>". $this->session->flashdata('messages') ."</div>";
+		echo $this->session->flashdata('messages');
 		}
 	?>
 					<p><button type="submit" class="waves-effect black btn-flat" style="color:white">Add to Cart</button></p>

@@ -13,6 +13,10 @@ class Socks extends CI_Controller {
 		// $this->session->sess_destroy();
 		$this->load->view('index_2');
 	}
+	public function view_cart()
+	{
+		$this->load->view('cart');
+	}
 	public function cart()
 	{
 		// var_dump($this->input->post());
@@ -24,17 +28,37 @@ class Socks extends CI_Controller {
 		if($this->form_validation->run() === FALSE)
 		{
 			$this->view_data["errors"] = validation_errors();
-			$errors = $this->view_data["errors"];
+			$error = $this->view_data['errors'];
+			$errors = "<p class='red'>$error</p>"; //? NOT ADDING CLASS
+			// echo $errors;
+			// die();
 			$this->session->set_flashdata('messages', $errors);
 			// die('here');
 			$this->product_info($id);
 		}
 		else {
+			if($this->session->userdata('cart'))
+			{
+				$cart_infos = $this->session->userdata('cart');
+				foreach ($cart_infos as $info)
+				{
+					$cart [] = $info;
+				}		
+			}
 			$cart[] = $this->input->post();
 			$this->session->set_userdata('cart', $cart);
-			var_dump($this->session->userdata['cart']);
-			die();
-			$this->load->view('cart');
+			
+			//ADDING TOTAL COUNT AND PRICE OF CART
+			// $cart_infos = $this->session->userdata('cart');
+			// $total = 0;
+			// foreach ($cart_infos as $info)
+			// {
+			// 	$total += ($info['price'] * $info['quantity']);
+			// }
+			// $this->session->set_userdata('cart_total', $total);
+			$success = "<p class='green'>Added!</p>";
+			$this->product_info($id);
+			$this->session->set_flashdata('messages', $success);
 		}
 	}
 	public function login()

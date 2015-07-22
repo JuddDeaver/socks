@@ -59,6 +59,7 @@ $route['index_2'] = 'socks/index_2';
 $route['index_3'] = 'socks/index_3';
 $route['mens'] = 'socks/mens';
 $route['payment'] = 'socks/payment';
+$route['view_cart'] = 'socks/view_cart';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
