@@ -1,11 +1,15 @@
 <?php
 	// var_dump($this->session->userdata('cart'));
+if($this->session->userdata('cart'))
+{
 	$cart_infos = $this->session->userdata('cart');
 	$total = 0;
 	foreach ($cart_infos as $info)
 	{
-		$total = $total + ($info['price'] * $info['quantity']);
+		$total = $total + number_format(($info['price'] * $info['quantity']), 2); //?not working
 	}
+}
+// echo number_format((float)$foo, 2, '.', '');
 	// echo $total;
 ?>
 <!DOCTYPE html>
