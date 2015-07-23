@@ -83,6 +83,9 @@
 					    <th data-field='Billing_State'>Billing State</th>
 					    <th data-field='Billing_Zipcode'>Billing Zipcode</th>
 						<th data-field='Order_Total'>Order Total</th>
+						<th data-field='Created_at'>Created at</th>
+						<th data-field='Updated_at'>Updated at</th>
+						<th data-field='Status'>Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -113,6 +116,9 @@
 						    <td><?= $order['Billing_State']; ?> </td>
 						    <td><?= $order['Billing_Zipcode']; ?> </td>
 							<td><?= $order['Order_Total']; ?> </td>
+							<td><?= $order['Created_at']; ?> </td>
+							<td><?= $order['Updated_at']; ?> </td>
+							<td><?= $order['Status']; ?> </td>
 					</a>
 						</tr>
 <?php

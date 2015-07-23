@@ -99,7 +99,10 @@ class Sock extends CI_Model {
 		    products.style AS 'Style',
 		    products.material AS 'Material',
 		    order_items.quantity AS 'Quantity',
-			order_items.price AS 'Price'
+			order_items.price AS 'Price',
+			order_heads.created_at AS 'Created_at',
+			order_heads.created_at AS 'Updated_at',
+			orders_status.status AS 'Status'
 		    
 		FROM order_heads
 		JOIN order_items ON order_heads.id = order_items.order_head_id
@@ -113,7 +116,8 @@ class Sock extends CI_Model {
 		JOIN states AS shipping_state ON shipping.state_id = shipping_state.id
 		JOIN states AS billing_state ON billing.state_id = billing_state.id
 		JOIN cc_types ON cc.cc_type_id = cc_types.id
-		JOIN products ON order_items.product_id = products.id";
+		JOIN products ON order_items.product_id = products.id
+		JOIN orders_status ON order_heads.order_status = orders_status.id";
 
 		return $this->db->query($query)->result_array();
 	}
@@ -152,7 +156,11 @@ class Sock extends CI_Model {
 		    billing_city.city AS 'Billing_City',
 		    billing_state.code AS 'Billing_State',
 		    billing.zipcode AS 'Billing_Zipcode',
-			Sum(order_items.price) AS 'Order_Total'
+			Sum(order_items.price) AS 'Order_Total',
+			order_heads.created_at AS 'Created_at',
+			order_heads.created_at AS 'Updated_at',
+			orders_status.status AS 'Status'
+
 		    
 		FROM order_heads
 			JOIN order_items ON order_heads.id = order_items.order_head_id
@@ -166,6 +174,7 @@ class Sock extends CI_Model {
 			JOIN states AS shipping_state ON shipping.state_id = shipping_state.id
 			JOIN states AS billing_state ON billing.state_id = billing_state.id
 			JOIN cc_types ON cc.cc_type_id = cc_types.id
+			JOIN orders_status ON order_heads.order_status = orders_status.id
 		GROUP BY order_heads.id";
 
 		return $this->db->query($query)->result_array();
@@ -225,5 +234,10 @@ class Sock extends CI_Model {
 		WHERE products.id = $id;";
 
 		return $this->db->query($query)->result_array();
+	}
+
+	public function delete_product($id)
+	{
+
 	}
 }
