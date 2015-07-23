@@ -74,6 +74,7 @@ $route['logout_a'] = 'socks/logout_a';
 $route['add_a'] = 'socks/add_a';
 $route['dash_a'] = 'socks/dash_a';
 $route['products_a'] = 'socks/products_a';
+$route['search_a'] = 'socks/search_a';
 $route['items_a/(:any)'] = 'socks/items_a/$1';
 $route['login_admin'] = 'socks/login_admin';
 $route['add_admin'] = 'socks/add_admin';

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Product Dashboard</title>
+	<title>Search Page</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -52,9 +52,10 @@
 			{
 				echo $this->session->flashdata("errors");
 			}
+			var_dump($this->input->post());
+			die();
 		?>​</h1>
-
-		<div>
+		<div class="search_results">
 			<table class="hoverable">
 				<thead>
 					<tr>
@@ -69,40 +70,39 @@
 					    <th data-field='size'>Size</th>
 		    			<th data-field='style'>Style</th>
 					    <th data-field='material'>Material</th>
-					    <th data-field='created_at'>Created At</th>
-					    <th data-field='updated_at'>Shipping Address</th>
 					</tr>
 				</thead>
 				<tbody>
 <?php
-				$products = $this->sock->fetch_all('products');
-				foreach ($products as $product)
+				$products = $this->sock->search_db(array('happysocks'),array('brand'),array('products'));
+				// $products = $this->sock->search_db(array('happysocks'),array('brand'));
+				// $products = $this->sock->search_db(array('happysocks'));
+				foreach ($products as $table)
 				{
-					// temp to filter out dummy data
-					$image =  '/assets/products/' . $product['imageurl'];
-					if (file_exists('.' . $image))
+					foreach ($table as $product)
 					{
+						$image =  '/assets/products/' . $product['imageurl'];
+						// if (file_exists('.' . $image))
+						// {
 ?>				
-						<tr>
-							<td><a href="items_a/<?= $product['id']; ?>">Edit Product</a></td>
-							<td><img width='60' src="<?= $image; ?>"></td>
-							<td><?= $product['id']; ?> </td>
-							<td><?= $product['brand']; ?> </td>
-						    <td><?= $product['name']; ?> </td>
-						    <td><?= $product['color']; ?> </td>
-						    <td><?= $product['pattern']; ?> </td>
-						    <td><?= $product['price']; ?> </td>
-						    <td><?= $product['size']; ?> </td>
-						    <td><?= $product['style']; ?> </td>
-						    <td><?= $product['material']; ?> </td>
-						    <td><?= $product['created_at']; ?> </td>
-						    <td><?= $product['updated_at']; ?> </td>
-					</a>
-						</tr>
+							<tr>
+								<td><a href="items_a/<?= $product['id']; ?>">Edit Product</a></td>
+								<td><img width='60' src="<?= $image; ?>"></td>
+								<td><?= $product['id']; ?> </td>
+								<td><?= $product['brand']; ?> </td>
+							    <td><?= $product['name']; ?> </td>
+							    <td><?= $product['color']; ?> </td>
+							    <td><?= $product['pattern']; ?> </td>
+							    <td><?= $product['price']; ?> </td>
+							    <td><?= $product['size']; ?> </td>
+							    <td><?= $product['style']; ?> </td>
+							    <td><?= $product['material']; ?> </td>
+								</a>
+							</tr>
 <?php
-				
+						// }
+					}
 				}
-			}
 
 ?>
 				</tbody>

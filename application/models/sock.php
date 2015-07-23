@@ -170,6 +170,32 @@ class Sock extends CI_Model {
 
 		return $this->db->query($query)->result_array();
 	}
+// pass in the column name and value(s) to search for.
+// example search_table('products', 'color', )
+// color and pattern are going to be normalized
+// this will have to make joins once that happens
+// pass in wildcards to find sub-strings
+	public function search_db($values, $columns, $tables)
+	{
+		$results = [];
+		foreach ($tables as $table)
+		{
+			$query = "SELECT * FROM $table
+						WHERE ";
+			foreach ($columns as $column)
+			{
+				foreach ($values as $value)
+				{
+					$query .= "$column LIKE '${value}'";
+				}
+				
+			}
+			$results[$table] = $this->db->query($query)->result_array();
+		}
+		return $results;
+	}
+
+
 	public function get_order_items($id)
 	{
 		$query = 

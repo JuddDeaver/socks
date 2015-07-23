@@ -128,6 +128,10 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view("products_a");
 	}
+	public function search_a()
+	{
+		$this->load->view("search_a");
+	}
 	public function items_a($id)
 	{
 		$this->load->view("items_a", array('id' => $id));
