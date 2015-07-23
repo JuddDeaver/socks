@@ -204,7 +204,10 @@ class Sock extends CI_Model {
 		return $results;
 	}
 
-
+public function search_color($color)
+{
+	return search_db(array($color), array('colors'), array('products'));
+}
 	public function get_order_items($id)
 	{
 		$query = 
