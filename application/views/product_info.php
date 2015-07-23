@@ -10,9 +10,8 @@ if($this->session->userdata('cart'))
 	}
 }
 // var_dump($product_info);
-
-$colors = $product_info['color'];
-$display_colors = explode(',', $colors);
+// var_dump($colors);
+// die();
 
 // var_dump($display_colors);
 	// echo $total;
@@ -203,10 +202,10 @@ $display_colors = explode(',', $colors);
 				</form>
 					<p>
 					<?php
-					foreach ($display_colors as $color)
+					foreach ($colors as $color)
 					{
 					?>
-						<img width="20px" style="border: 1px solid silver" src="/assets/colors/<?=$color?>.jpg">
+						<img width="20px" style="border: 1px solid silver" src="/assets/colors/<?=$color['color']?>.jpg">
 					<?php
 				}
 				?>

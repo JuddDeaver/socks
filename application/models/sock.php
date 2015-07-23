@@ -191,4 +191,13 @@ class Sock extends CI_Model {
 
 		return $this->db->query($query)->result_array();
 	}
+	public function get_colors_by_id($id)
+	{
+		$query = " SELECT products.id, colors.color  FROM select_color
+		JOIN products ON select_color.product_id = products.id
+		JOIN colors ON select_color.color_id = colors.id
+		WHERE products.id = $id;";
+
+		return $this->db->query($query)->result_array();
+	}
 }

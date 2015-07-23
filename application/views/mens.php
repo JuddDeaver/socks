@@ -176,7 +176,7 @@ if($this->session->userdata('cart'))
 			<div class="middle">
 				<div class="logo_left">MATCHSOCKS</div>
 				<ul class="categories">
-					<li><a href="/mens">MENS</a></li>
+					<li><a href="/mens" id="active">MENS</a></li>
 					<li><a href="/womens">WOMENS</a></li>
 					<li><a href="/kids">KIDS</a></li>
 				</ul>

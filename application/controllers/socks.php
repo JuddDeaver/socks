@@ -68,7 +68,8 @@ class Socks extends CI_Controller {
 	public function product_info($id)
 	{
 		$product_info = $this->sock->fetch_product_by_id($id);
-		$this->load->view('product_info', array('product_info' => $product_info));
+		$colors = $this->sock->get_colors_by_id($id);
+		$this->load->view('product_info', array('product_info' => $product_info, 'colors' =>$colors));
 	}
 	public function mens()
 	{
@@ -79,7 +80,6 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view('payment');
 	}
-
 
 
 
