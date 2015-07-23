@@ -99,15 +99,15 @@ if($this->session->userdata('cart'))
 	</script>
 </head>
 <body>
-<?php if($this->session->userdata('cart'))
+<?php if(count($this->cart->total_items()>0))
 {
 ?>
 	<div class="cart valign-wrapper">
-	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=count($cart_infos)?> items <b>$<?=$total?></b></p>
+	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=$this->cart->total_items()?> items <b>$<?=$this->cart->total()?></b></p>
 	</div>
 <?
 }
-?>
+?> 
 	<div class="row">
 		<div class="menu_left">
 			<div class="middle">

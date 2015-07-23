@@ -1,15 +1,15 @@
 <?php
-var_dump($this->session->userdata('cart'));
-$carts = $this->session->userdata('cart');
+$contents = $this->cart->contents();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>SockMatch</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+	<link rel="stylesheet" href="/assets/css/materialize.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/style.css">
 	<style type="text/css">
 			* {
 		/*outline: red dotted 1px;*/
@@ -121,15 +121,57 @@ $carts = $this->session->userdata('cart');
 	.sub_menu{
 		margin-top: 20px;
 	}
-	.cart input{
+	.cart_list thead{
+		font-size: 10px;
+		color: grey;
+	}
+	h5 {
+		font-size: 18px;
+		font-weight: 500;
+	}
+	#name {
+		margin-top: 5px;
+		font-size: 11px;
+		color: grey;
 		border: none;
+	}
+	#price {
+		border: none;
+		color: grey;
+		font-size: 13px;
+		text-align: right;
+	}
+	#price_th {
+		text-align: right;
+	}
+	#number input{
+		width: 50px;
+		text-align: right;
+	}
+	#subtotal {
+		text-align: right;
+		color: grey;
+		padding: 25px 0px;
+	}
+	#subtotal b {
+		margin-right: 20px;
+		font-weight: normal;
+	}
+	#change {
+		text-align: right;
+	}
+	#picture {
+		width: 70px;
+	}
+	td {
+		padding: 0px;
 	}
 	</style>
 </head>
 <body>
 	<div class="menu_left">
 		<div class="middle">
-			<div class="logo_left">MATCHSOCKS</div>
+			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
 			<ul class="categories">
 				<li><a href="/mens">MENS</a></li>
 				<li><a href="#">WOMENS</a></li>
@@ -142,63 +184,55 @@ $carts = $this->session->userdata('cart');
 		</div>	
 	</div>
 	<div class="menu_top">
-		<div class="logo_top">MATCHSOCKS</div>
+		<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
 		<div class="menu_icon right"><i class="material-icons">menu</i></div>
 
 	</div>
 	<div class="content">
 		<div class="row">
-			<div class="col m8 s12">
-				<table class="bordered cart">
+			<div class="col s12">
+				<h5>Shopping Cart</h5>
+				<table class="bordered cart_list">
 		        <thead>
 		          <tr>
-		          	  <th data-field="picture"></th>
-		              <th data-field="id">Item</th>
+		          	  <th id="picture" data-field="picture">Item</th>
+		              <th data-field="id"></th>
 		              <th data-field="quantity">Quantity</th>
-		              <th data-field="price">Item Price</th>
-		              <th data-field="total_price">Total Price</th>
+		              <th id="price_th" data-field="price">Price</th>
 		              <th data-field="change"></th>
 		          </tr>
 		        </thead>
 		        <tbody>
 <?php
-if(count($carts) > 0) {
-	foreach ($carts as $cart){
+if(count($this->cart->contents()>0)) {
+	foreach ($contents as $content){
 ?>
 		          <tr>
-		            <td><img src="/assets/grey.png" width="50px" /></td>
-		            <td><input type="text" name="name" value="<?=$cart['name']?>" readonly></td>
+		          	<form method="post" action="edit_cart">
+		            <td><img src="/assets/products/<?=$content['picture']?>" width="50px"></td>
+		            <td><p id="name"><?=$content['name']?></p></td>
 		            <td>
-		            	<input type="text" name="quantity" value="<?=$cart['quantity']?>"> 
+		            	<input id="number" type="number" name="qty" min="1" max="10" value="<?=$content['qty']?>">
 		            </td>
-		            <td><input type="text" name="price" value="$<?=$cart['price']?>" readonly></td>
-		            <td><?php echo "$". $cart['quantity'] * $cart['price'] ?></td>
-		            <td><p><a href="">Edit</a></p>
-		            	<p><a href="">Remove</a></p>
-		            	</td>
+		            <td><p id="price">$<?=$content['price']?></p></td>
+		            <td><p id="change" class="close"><img class="close" src="/assets/icon_close.png" width="10px"></p>
+		      <!--       	<input type="hidden" name="id" value="<?=$content['id']?>"> -->
+		            	<input type="hidden" name="rowid" value="<?=$content['rowid']?>">
+		            	<button type="submit">Edit</button>
+	            	</td>
+		            </form>
 		          </tr>
 <?php
 	}
 }
 ?>
 		          <tr>
-		            <td><img src="/assets/grey.png" width="50px" /></td>
-		            <td>Alan</td>
-		            <td>Alan</td>
-		            <td>Jellybean</td>
-		            <td>$3.76</td>
-		          </tr>
-		          <tr>
-		            <td><img src="/assets/grey.png" width="50px" /></td>
-		            <td>Jonathan</td>
-		            <td>Jonathan</td>
-		            <td>Lollipop</td>
-		            <td>$7.00</td>
+		            <td id="subtotal" colspan="5"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
 		          </tr>
 		        </tbody>
 		      </table>
 			</div>
-			<div class="col m4 s12">
+<!-- 			<div class="col m4 s12">
 				<table class="bordered">
 		        <thead>
 		          <tr>
@@ -229,8 +263,24 @@ if(count($carts) > 0) {
 		          </tr>
 		        </tbody>
 		      </table>
-			</div>
+			</div> -->
 		</div>
+
+	</div>
+	<div class="menu_right">
+			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
+			<div class="middle">
+				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
+				<ul class="categories">
+					<li><a href="/mens">MENS</a></li>
+					<li><a href="/womens">WOMENS</a></li>
+					<li><a href="/kids">KIDS</a></li>
+				</ul>
+				<ul class="sub-categories">
+					<li><a href="/about">About</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</div>
 	</div>
 </body>
 </html>

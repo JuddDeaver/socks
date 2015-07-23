@@ -37,25 +37,15 @@ class Socks extends CI_Controller {
 			$this->product_info($id);
 		}
 		else {
-			if($this->session->userdata('cart'))
-			{
-				$cart_infos = $this->session->userdata('cart');
-				foreach ($cart_infos as $info)
-				{
-					$cart [] = $info;
-				}		
-			}
-			$cart[] = $this->input->post();
-			$this->session->set_userdata('cart', $cart);
-			
-			//ADDING TOTAL COUNT AND PRICE OF CART
-			// $cart_infos = $this->session->userdata('cart');
-			// $total = 0;
-			// foreach ($cart_infos as $info)
-			// {
-			// 	$total += ($info['price'] * $info['quantity']);
-			// }
-			// $this->session->set_userdata('cart_total', $total);
+		 	$insert_data = array( 'id' => $this->input->post('id'),
+			 'name' => $this->input->post('name'),
+			 'price' => $this->input->post('price'),
+			'qty' => $this->input->post('quantity'),
+			'picture' =>$this->input->post('picture') );
+
+			 // This function add items into cart.
+			$this->cart->insert($insert_data);
+
 			$success = "<p class='green'>Added!</p>";
 			$this->product_info($id);
 			$this->session->set_flashdata('messages', $success);
@@ -67,9 +57,12 @@ class Socks extends CI_Controller {
 	}
 	public function product_info($id)
 	{
+		$this->load->library('cart');
+		$carts = ($this->cart->contents());
+
 		$product_info = $this->sock->fetch_product_by_id($id);
 		$colors = $this->sock->get_colors_by_id($id);
-		$this->load->view('product_info', array('product_info' => $product_info, 'colors' =>$colors));
+		$this->load->view('product_info', array('product_info' => $product_info, 'colors' =>$colors, 'carts' => $carts));
 	}
 	public function mens()
 	{
@@ -80,8 +73,16 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view('payment');
 	}
-
-
+	public function edit_cart()
+	{
+		
+		$edit_data = array(
+			'rowid' => $this->input->post('rowid'),
+			'qty' => $this->input->post('qty'));
+		
+		$this->cart->update($edit_data);
+		redirect('/view_cart');
+	}
 
 	//////////ADMIN////////
 	public function index_a()

@@ -1,20 +1,4 @@
 <?php
-	// var_dump($this->session->userdata('cart'));
-if($this->session->userdata('cart'))
-{
-	$cart_infos = $this->session->userdata('cart');
-	$total = 0;
-	foreach ($cart_infos as $info)
-	{
-		$total = $total + number_format(($info['price'] * $info['quantity']), 2);
-	}
-}
-// var_dump($product_info);
-// var_dump($colors);
-// die();
-
-// var_dump($display_colors);
-	// echo $total;
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,8 +60,7 @@ if($this->session->userdata('cart'))
 		display: inline-block;
 	}
 	#quantity input{
-		border: 1px solid silver;
-		border-radius: 2px;
+
 		position: relative;
 		top: -10px;
 	}
@@ -137,15 +120,15 @@ if($this->session->userdata('cart'))
 	</script>
 </head>
 <body>
-	<?php if($this->session->userdata('cart'))
+<?php if(count($this->cart->total_items()>0))
 {
 ?>
 	<div class="cart valign-wrapper">
-	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=count($cart_infos)?> items <b>$<?=$total?></b></p>
+	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=$this->cart->total_items()?> items <b>$<?=$this->cart->total()?></b></p>
 	</div>
 <?
 }
-?>
+?> 
 	<div class="menu_left">
 		<div class="middle">
 			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
@@ -199,6 +182,7 @@ if($this->session->userdata('cart'))
 	?>
 					<p><button type="submit" class="waves-effect black btn-flat" style="color:white">Add to Cart</button></p>
 					<input type="hidden" name="id" value="<?=$product_info['id']?>">
+					<input type="hidden" name="picture" value="<?=$product_info['imageurl']?>">
 				</form>
 					<p>
 					<?php

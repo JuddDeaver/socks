@@ -70,7 +70,7 @@ body {
         padding: 23px 23px 15px 23px;
     }
     .content {
-        float: right;
+        /*float: right;*/
         padding: 0 10px;
     }
     .menu_left {
@@ -234,4 +234,7 @@ body {
 .logo_left {
     font-size: 18px;
     font-weight: 500;
+}
+.close {
+    cursor: pointer;
 }
