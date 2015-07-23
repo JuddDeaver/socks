@@ -43,7 +43,7 @@ if($this->session->userdata('cart'))
 	.border {
 		outline: 3px solid black;
 		padding: 10px;
-		height: 400px;
+		height: 600px;
 	}
 	.sub_menu{
 		margin-top: 20px;
@@ -53,6 +53,23 @@ if($this->session->userdata('cart'))
 		position: absolute;
 		right: 20px;
 		top: 20px;
+	}
+	.pattern {
+		font-size: 12px;
+
+		
+	}
+	.pattern div {
+		margin-top: 10px;
+	}
+	.size div {
+		margin-top: 10px;
+	}
+	.size {
+		font-size: 12px;
+	}
+	.style {
+		font-size: 12px;
 	}
 	h5 {
 		/*display: inline-block;*/
@@ -133,21 +150,53 @@ if($this->session->userdata('cart'))
 						    </li>
 						    <li>
 						      <div class="collapsible-header">Pattern</div>
-						      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+						      <div class="collapsible-body ">
+						      	<div class="row pattern ">
+							      <div class="col s6">ARGYLE</div>
+							      <div class="col s6">CHARACTERS</div>
+							      <div class="col s6">CHECKERED</div>
+							      <div class="col s6">CROSSHATCH</div>
+							      <div class="col s6">DOTS</div>
+							      <div class="col s6">FAIR ISLE</div>
+							      <div class="col s6">FLECKS</div>
+							      <div class="col s6">FLORAL</div>
+							      <div class="col s6">GEOMETRIC</div>
+							      <div class="col s6">PAISLEY</div>
+							      <div class="col s6">SOLID</div>
+							      <div class="col s6">STRIPES</div>
+							    </div>
+						      </div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header">Size</div>
-						      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+						      <div class="collapsible-body">
+						      		<div class="row size">
+							      		<div class="col s2">XS</div>
+								    	<div class="col s2">S</div>
+								    	<div class="col s2">M</div>
+								    	<div class="col s2">L</div>
+								    	<div class="col s2">XL</div>
+							    	</div>
+						      </div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header">Style</div>
-						      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+						      <div class="collapsible-body">
+						      	<div class="row style">
+							      	<div class="col s4">MEN</div>
+							    	<div class="col s4">WOMEN</div>
+							    	<div class="col s4">KIDS</div>
+						    	</div>
+						      </div>
 						    </li>
 						    <li>
 						      <div class="collapsible-header">Brand</div>
-						      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+						      <div class="collapsible-body">
+						      	<input type="text" name="brand">
+						      </div>
 						    </li>
 						  </ul>
+						  <button>FIND</button>
 					</div>
 					<div class="col s12 m6">
 						-OR-
@@ -171,7 +220,7 @@ if($this->session->userdata('cart'))
 		<div class="menu_right">
 			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
 			<div class="middle">
-				<div class="logo_left">MATCHSOCKS</div>
+				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
 				<ul class="categories">
 					<li><a href="/mens">MENS</a></li>
 					<li><a href="/womens">WOMENS</a></li>
