@@ -1,15 +1,4 @@
 <?php
-	// var_dump($this->session->userdata('cart'));
-if($this->session->userdata('cart'))
-{
-	$cart_infos = $this->session->userdata('cart');
-	$total = 0;
-	foreach ($cart_infos as $info)
-	{
-		$total = $total + number_format(($info['price'] * $info['quantity']), 2);
-	}
-}
-	// echo $total;
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,40 +13,12 @@ if($this->session->userdata('cart'))
 	* {
 		/*outline: red dotted 1px;*/
 	}
-	.pictures img{
+	img{
 		width: 100%;
-	}
-	/*.main_picture{
-		width: 100%;
-		padding: 65px;
-	}	*/
-/*	.main_picture{
-		padding: 0px 12px;
-	}*/
-	.sub_menu{
-		margin-top: 20px;
-	}
-	.close img{
-		width: 20px;
-		position: absolute;
-		right: 20px;
-		top: 20px;
-	}
-	.content h5 {
-		padding: 0 10px;
 	}
 	.price {
 		color: gray;
 		line-height: 19px;
-	}
-	.option {
-		padding-left: 0px;
-		margin: 0 10px;
-	}
-	.option ul {
-		display: none;
-	}
-	.option li ul li {
 	}
 	.collapsible {
 		margin: 10px;
@@ -72,9 +33,6 @@ if($this->session->userdata('cart'))
 		    $(".close img").click(function(){
 		        $(".menu_right").animate({width: 'toggle'}, 200);
 		    });
-		    $( ".option li" ).click(function() {
-			  $( ".option ul" ).toggle(200);
-			});
 			$(".cart").click(function() {
 		    	window.location='/view_cart';
 		    });
@@ -82,36 +40,29 @@ if($this->session->userdata('cart'))
 	</script>
 </head>
 <body>
-<?php if(count($this->cart->total_items() > 0))
+<?php if(  count ($this->cart->total_items() ) > 0 )
 {
 ?>
-	<div class="cart valign-wrapper">
-	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=$this->cart->total_items()?> items <b>$<?=$this->cart->total()?></b></p>
-	</div>
+    <div class="cart valign-wrapper hide-on-small-only">
+      <?php
+        $this->load->view('partials/cart');
+      ?>
+    </div>
 <?
 }
 ?> 
-	<div class="menu_left">
-		<div class="middle">
-			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-			<ul class="categories">
-				<li><a href="/mens"  id="active">MENS</a></li>
-				<li><a href="#">WOMENS</a></li>
-				<li><a href="#">KIDS</a></li>
-			</ul>
-			<ul class="sub-categories">
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</div>	
-	</div>
-	<div class="menu_top">
-		<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
-		<div class="menu_icon right"><i class="material-icons">menu</i></div>
-
-	</div>
+    <div class="row">
+        <div class="menu_left hide-on-med-and-down">
+            <?php
+                $this->load->view('partials/menu_left');
+            ?>
+        </div>
+        <div class="menu_top hide-on-large-only">
+            <?php
+                $this->load->view('partials/menu_top');
+            ?>
+        </div>
 	<div class="content">
-		<h5>MENS</h5>
 		<div class="row">
 			<form>
 			<ul class="collapsible z-depth-1" data-collapsible="accordion">
@@ -171,24 +122,23 @@ if($this->session->userdata('cart'))
 	</div>
 
   
-	<div class="menu_right">
-			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
-			<div class="middle">
-				<div class="logo_left">MATCHSOCKS</div>
-				<ul class="categories">
-					<li><a href="/mens" id="active">MENS</a></li>
-					<li><a href="/womens">WOMENS</a></li>
-					<li><a href="/kids">KIDS</a></li>
-				</ul>
-				<ul class="sub-categories">
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>
+       <div class="menu_right">
+            <?php
+                $this->load->view('partials/menu_right');
+            ?>
+        </div>
 
-			
-
+<?php if(  count ($this->cart->total_items() ) > 0 )
+{
+?>
+    <div class="cart_bottom valign-wrapper hide-on-med-and-up">
+      <?php
+        $this->load->view('partials/cart');
+      ?>
+    </div>
+<?
+}
+?>        
 		
 	</div>
 </body>

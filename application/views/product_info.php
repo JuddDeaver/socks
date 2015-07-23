@@ -13,25 +13,11 @@
 	* {
 		/*outline: red dotted 1px;*/
 	}
-	
-	.pictures img{
-		width: 100%;
-	}
-	/*.main_picture{
-		width: 100%;
-		padding: 65px;
-	}	*/
-/*	.main_picture{
-		padding: 0px 12px;
-	}*/
-	.sub_menu{
-		margin-top: 20px;
-	}
-	.close img{
+	.colors img{
 		width: 20px;
-		position: absolute;
-		right: 20px;
-		top: 20px;
+	}
+	img{
+		width: 100%;
 	}
 	.content h5 {
 		padding: 0 10px;
@@ -48,9 +34,6 @@
 		display: none;
 	}
 	.option li ul li {
-	}
-	.similar img {
-		width: 100%;
 	}
 	.product_picture img {
 		width: 100%;
@@ -121,34 +104,28 @@
 	</script>
 </head>
 <body>
-<?php if(count($this->cart->total_items()>0))
+<?php if(  count ($this->cart->total_items() ) > 0 )
 {
 ?>
-	<div class="cart valign-wrapper">
-	  <p><i class="material-icons tiny">shopping_cart</i> Cart - <?=$this->cart->total_items()?> items <b>$<?=$this->cart->total()?></b></p>
-	</div>
+    <div class="cart valign-wrapper hide-on-small-only">
+      <?php
+        $this->load->view('partials/cart');
+      ?>
+    </div>
 <?
 }
 ?> 
-	<div class="menu_left">
-		<div class="middle">
-			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-			<ul class="categories">
-				<li><a href="/mens">MENS</a></li>
-				<li><a href="#">WOMENS</a></li>
-				<li><a href="#">KIDS</a></li>
-			</ul>
-			<ul class="sub-categories">
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</div>	
-	</div>
-	<div class="menu_top">
-		<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
-		<div class="menu_icon right"><i class="material-icons">menu</i></div>
-
-	</div>
+    <div class="row">
+        <div class="menu_left hide-on-med-and-down">
+            <?php
+                $this->load->view('partials/menu_left');
+            ?>
+        </div>
+        <div class="menu_top hide-on-large-only">
+            <?php
+                $this->load->view('partials/menu_top');
+            ?>
+        </div>
 	<div class="content">
 		<div class="row">
 			<div class="product_picture col s12 m7">
@@ -186,7 +163,7 @@
 					<input type="hidden" name="picture" value="<?=$product_info['imageurl']?>">
 				</form>
 					<p>Details</p>
-					<p>
+					<p class="colors">
 					<?php
 					foreach ($colors as $color)
 					{
@@ -215,22 +192,25 @@
 		</div>
 		
 	</div>
-	<div class="menu_right">
-			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
-			<div class="middle">
-				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-				<ul class="categories">
-					<li><a href="/mens">MENS</a></li>
-					<li><a href="/womens">WOMENS</a></li>
-					<li><a href="/kids">KIDS</a></li>
-				</ul>
-				<ul class="sub-categories">
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>	
 	</div>
+       <div class="menu_right">
+            <?php
+                $this->load->view('partials/menu_right');
+            ?>
+        </div>
+
+<?php if(  count ($this->cart->total_items() ) > 0 )
+{
+?>
+    <div class="cart_bottom valign-wrapper hide-on-med-and-up">
+      <?php
+        $this->load->view('partials/cart');
+      ?>
+    </div>
+<?
+}
+?>    
+	
 </body>
 </html>
 <body>

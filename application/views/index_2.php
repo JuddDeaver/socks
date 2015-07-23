@@ -78,6 +78,17 @@
                 window.location='/view_cart';
             });
         });
+        $(document).on("click", ".add", function(){
+           $(this).before("<input class='full' />"); 
+            $('.full:empty').spectrum({
+               showPaletteOnly: true, // if you want to only have the palette
+               showPalette:true,
+               palette: [ // here the colors you want to have on your palette
+                 ['black', 'white', 'blanchedalmond',
+                 ['red', 'yellow', 'green', 'blue', 'violet']
+               ]
+            });
+        });
     </script>
 </head>
 <body>
@@ -112,16 +123,10 @@
                             <li>
                               <div class="collapsible-header">Color</div>
                               <div class="collapsible-body">
-                              <p class="color">
-                               <!--  <?php
-                                for($i = 1; $i < 14; $i++)
-                                {
-                                    ?>
-                                    <img width="20px" style="border: 1px solid silver" src="/assets/colors/<?=$i?>.jpg">
-                                <?php
-                                }
-                                ?> -->
-                              </p>
+                                 <div class="colorpicker-container">
+                                    <input class="full" />
+                                    <a class="add" href="#">+ Add</a>  
+                                </div>
                               </div>
                             </li>
                             <li>
@@ -194,19 +199,9 @@
             </div>
         </div>
         <div class="menu_right">
-            <p class="close"><img class="close" src="/assets/icon_close.png"></p>
-            <div class="middle">
-                <div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-                <ul class="categories">
-                    <li><a href="/mens">MENS</a></li>
-                    <li><a href="/womens">WOMENS</a></li>
-                    <li><a href="/kids">KIDS</a></li>
-                </ul>
-                <ul class="sub-categories">
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-            </div>
+            <?php
+                $this->load->view('partials/menu_left');
+            ?>
         </div>
 
 <?php if(  count ($this->cart->total_items() ) > 0 )
