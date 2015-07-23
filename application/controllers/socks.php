@@ -83,6 +83,18 @@ class Socks extends CI_Controller {
 		$this->cart->update($edit_data);
 		redirect('/view_cart');
 	}
+	public function remove_cart($id)
+	{
+		$remove_data = array(
+			'rowid' => $id,
+			'qty' => 0);
+		$this->cart->update($remove_data);
+		redirect('/view_cart');
+	}
+	public function checkout()
+	{
+		$this->load->view('payment');
+	}
 
 	//////////ADMIN////////
 	public function index_a()

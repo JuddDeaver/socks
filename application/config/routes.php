@@ -61,6 +61,8 @@ $route['mens'] = 'socks/mens';
 $route['payment'] = 'socks/payment';
 $route['view_cart'] = 'socks/view_cart';
 $route['edit_cart'] = 'socks/edit_cart';
+$route['remove_cart/(:any)'] = 'socks/remove_cart/$1';
+$route['checkout'] = 'socks/checkout';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

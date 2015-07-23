@@ -1,152 +1,84 @@
+<?php
+$contents = $this->cart->contents();
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>MatchSocks</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+	<link rel="stylesheet" href="/assets/css/materialize.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/style.css">
 	<style type="text/css">
 	* {
 		/*outline: red dotted 1px;*/
 	}
 	body {
-		background-color: #fff;
+		background-color: #eee;
 	}
-	a {
-		color: black;
+	.product_picture{
+		padding: 0px 12px;
 	}
-	html, body {
-	    height: 100%;
-	    margin: 0;
+	.sub_menu{
+		margin-top: 20px;
 	}
-	@media screen and (min-width: 992px){
-		.menu_left {
-	    width: 20%;
-	    height: 100%;
-	    position: fixed;
-		}
-		.content {
-		    width: 80%;
-		    height: auto;
-		    position: absolute;
-		    right: 0;
-		    padding: 0px 65px;
-		    margin-top: 60px;
-		}
-		.menu_top{
-			visibility: hidden;
-			height: 0px;
-		}
-		.menu_right{
-			visibility: hidden;
-		}
+	.cart_list thead{
+		font-size: 10px;
+		color: grey;
 	}
-	@media screen and (max-width: 991px){
-		.menu_top {
-			padding: 20px;
-		}
-		.content{
-			padding: 0 10px;
-			float: right;
-		}
-		.menu_left{
-			visibility: hidden;
-			height: 0px;
-		}
-		.categories{
-				margin-top: 0px !important;
-			}
-		.logo_top {
-			width: 100px;
-			display: inline-block;
-		}
-		.menu_icon {
-			display: inline-block;
-			position: relative;
-		  	top: 0px;
-  			right: -2px;
-		}
-		.menu_right {
-			display: none;
-			width: 250px;
-			position: absolute;
-			right: 0px;
-			float: right;	
-			opacity: 1;
-			  overflow-x: hidden;
-			  overflow-y: auto;
-			  box-sizing: border-box;
-			  position: fixed;
-			  top: 0;
-			  right: 0;
-			  bottom: 0;
-			  z-index: 1;
-			  width: 240px;
-			  padding: 50px 0 40px;
-			  background: #fff;
-
-		}
-
+	#name {
+		margin-top: 5px;
+		font-size: 11px;
+		color: grey;
+		border: none;
+		width: 150px;
 	}
-	@media screen and (max-width: 600px){
-		.menu_top {
-			padding: 20px 10px;
-		}
-		.content{
-			padding: 0px;
-		}
-		.menu_left{
-			visibility: hidden;
-			height: 0px;
-		}
-		.categories{
-				margin-top: 0px !important;
-			}
-		.logo_top {
-			width: 100px;
-			display: inline-block;
-		}
-		.menu_icon {
-			display: inline-block;
-		}
+	#price {
+		border: none;
+		color: grey;
+		font-size: 13px;
+		text-align: right;
 	}
-	.middle{
-				margin: auto 30px;
-				padding: 10% 0 0 10%;
-				position: absolute;
-	   			top: 25%;
-				}
-			.categories{
-				margin-top: 30px;
-			}
-			.categories a{
-				color: black;
-			}
-			.categories li {
-				letter-spacing: 5px;
-				font-size: 12px;
-				line-height: 25px;
-			}
-			.sub-categories{
-				margin-top: 30px;
-				color: grey;
-				font-size: 13px;
-				line-height: 25px;
-			}
-			.sub-categories a{
-				color: grey;
-			}
-	img{
+	#price_th {
+		text-align: right;
+	}
+	#number input{
+		width: 50px;
+		text-align: right;
+	}
+	#subtotal {
+		text-align: right;
+		color: grey;
+		padding: 25px 0px;
+	}
+	#subtotal b {
+		margin-right: 20px;
+		font-weight: normal;
+	}
+	#change {
+		text-align: right;
+	}
+	#picture {
+		width: 70px;
+	}
+	td {
+		padding: 0px;
+	}
+	#checkout {
+		text-align: right;
+	}
+	
+	.pictures img{
 		width: 100%;
 	}
 	/*.main_picture{
 		width: 100%;
 		padding: 65px;
 	}	*/
-	.main_picture{
+/*	.main_picture{
 		padding: 0px 12px;
-	}
+	}*/
 	.sub_menu{
 		margin-top: 20px;
 	}
@@ -156,21 +88,165 @@
 		right: 20px;
 		top: 20px;
 	}
+	.content h5 {
+		padding: 0 10px;
+	}
+	.price {
+		color: gray;
+		line-height: 19px;
+	}
+	.option {
+		padding-left: 0px;
+		margin: 0 10px;
+	}
+	.option ul {
+		display: none;
+	}
+	.option li ul li {
+	}
+	.similar img {
+		width: 100%;
+	}
+	.product_picture img {
+		width: 100%;
+	}
+	.product input {
+		border: none;
+		display: inline-block;
+	}
+	#quantity input{
+
+		position: relative;
+		top: -10px;
+	}
+	.back i{
+		line-height: 0;
+		position: relative;
+		top: 10px;
+	}
+	.back {
+		cursor: pointer;
+		width: 100px;
+		position: relative;
+		left: -10px;
+		top: -10px;
+	}
+	.content {
+		/*margin-top: 10px;*/
+	}
+	#name {
+		margin: 0px;
+		font-size: 18px;
+		font-weight: 500;
+	}
+	#price {
+		font-size: 15px;
+		font-weight: 500;
+		position: relative;
+		top: -5px;
+	}
+	#price input {
+		display: inline-block;
+		width: 100px;
+		font-size: 15px;
+		height: 20px;
+		margin: 0px;
+
+	}
 	</style>
 	<script>
 		$(document).ready(function(){
 		    $(".menu_icon").click(function(){
-		        $(".menu_right").toggle();
+		        $(".menu_right").animate({width: 'toggle'}, 200);
 		    });
 		    $(".close img").click(function(){
-		        $(".menu_right").toggle();
+		        $(".menu_right").animate({width: 'toggle'}, 200);
 		    });
+		    $( ".option li" ).click(function() {
+			  $( ".option ul" ).toggle(200);
+			});
 		});
 	</script>
 </head>
 <body>
-	<div class="row">
-		<div class="menu_left">
+	<div class="menu_left">
+		<div class="middle">
+			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
+			<ul class="categories">
+				<li><a href="/mens">MENS</a></li>
+				<li><a href="#">WOMENS</a></li>
+				<li><a href="#">KIDS</a></li>
+			</ul>
+			<ul class="sub-categories">
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		</div>	
+	</div>
+	<div class="menu_top">
+		<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
+		<div class="menu_icon right"><i class="material-icons">menu</i></div>
+
+	</div>
+	<div class="content">
+		<div class="row">
+			<div class="col s12">
+				<h5>Shopping Cart</h5>
+				<table class="bordered cart_list">
+		        <thead>
+		          <tr>
+		          	  <th id="picture" data-field="picture">Item</th>
+		              <th data-field="id"></th>
+		              <th data-field="quantity">Quantity</th>
+		              <th id="price_th" data-field="price">Price</th>
+		              <th data-field="change"></th>
+		          </tr>
+		        </thead>
+		        <tbody>
+<?php
+if(count($this->cart->contents()>0)) {
+	foreach ($contents as $content){
+?>
+		          <tr>
+		          	<form method="post" action="edit_cart">
+		            <td><img src="/assets/products/<?=$content['picture']?>" width="50px"></td>
+		            <td><p id="name"><?=$content['name']?></p></td>
+		            <td>
+		            	<input id="number" type="number" name="qty" min="1" max="10" value="<?=$content['qty']?>">
+		            </td>
+		            <td><p id="price">$<?=$content['price']?></p></td>
+		            <td><a href="/remove_cart/<?=$content['rowid']?>"><p id="change" ><img src="/assets/icon_close.png" width="10px"></p></a>
+		      <!--       	<input type="hidden" name="id" value="<?=$content['id']?>"> -->
+		            	<input type="hidden" name="rowid" value="<?=$content['rowid']?>">
+		            	<button type="submit">Edit</button>
+	            	</td>
+		            </form>
+		          </tr>
+<?php
+	}
+}
+else 
+{
+?>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+<?php				
+}
+?>
+		          <tr>
+		            <td id="subtotal" colspan="5"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+		          </tr>
+		        </tbody>
+		      </table>
+		      <a href="/checkout"><p id="checkout"><button type="submit" class="waves-effect black btn-flat" style="color:white">Checkout</button></p></a>
+			</div>
+		</div>
+
+	</div>
+	<div class="menu_right">
+			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
 			<div class="middle">
 				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
 				<ul class="categories">
@@ -182,66 +258,9 @@
 					<li><a href="/about">About</a></li>
 					<li><a href="/contact">Contact</a></li>
 				</ul>
-			</div>	
-		</div>
-		<div class="menu_top">
-			<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
-			<div class="menu_icon right"><i class="material-icons">menu</i></div>
-		</div>
-		<div class="content">
-			<div class="row">
-				<div class="col s12 m6">
-					<div class=""></div>
-					<h5>Contact & Shipping</h5>
-					<!-- <img src="/assets/mens.jpg"> -->
-					<div class="row">
-					    <form class="col s12">
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-					          <label for="first_name">First Name</label>
-					        </div>
-					        <div class="input-field col s6">
-					          <input id="last_name" type="text" class="validate">
-					          <label for="last_name">Last Name</label>
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <input id="password" type="password" class="validate">
-					          <label for="password">Password</label>
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <input id="email" type="email" class="validate">
-					          <label for="email">Email</label>
-					        </div>
-					      </div>
-					    </form>
-					  </div>
-				</div>
-				<div class="col s12 m6">
-					<h5>Order Summary</h5>
-					<!-- <img src="/assets/womens.jpg"> -->
-				</div>
 			</div>
-		</div>
-		<div class="menu_right">
-			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
-			<div class="middle">
-				<div class="logo_left">MATCHSOCKS</div>
-				<ul class="categories">
-					<li><a href="/mens">MENS</a></li>
-					<li><a href="/womens">WOMENS</a></li>
-					<li><a href="/kids">KIDS</a></li>
-				</ul>
-				<ul class="sub-categories">
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>
+		</div>	
 	</div>
 </body>
 </html>
+<body>

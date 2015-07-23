@@ -6,6 +6,10 @@ body {
     height: 100%;
     margin: 0;
 }
+h5 {
+    font-size: 18px;
+    font-weight: 500;
+}
 @media screen and (min-width: 992px) {
     .menu_left {
         position: fixed;
