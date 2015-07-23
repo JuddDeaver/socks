@@ -89,9 +89,9 @@
 ?>				
 							<tr>
 								<td>
-								<a href="items_a/<?= $product['id']; ?>">Edit</a>
+								<a href="edit_product/<?= $product['id']; ?>">Edit</a>
 								| 
-								<a href="items_a/<?= $product['id']; ?>">Delete</a>
+								<a href="delete_product/<?= $product['id']; ?>">Delete</a>
 								</td>
 								<td><img width='60' src="<?= $image; ?>"></td>
 								<td><?= $product['id']; ?> </td>

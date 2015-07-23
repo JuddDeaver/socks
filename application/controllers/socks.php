@@ -132,6 +132,14 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view("search_a");
 	}
+	public function delete_product()
+	{
+		die("delete function");
+	}
+	public function edit_product()
+	{
+		die("edit function");
+	}
 	public function items_a($id)
 	{
 		$this->load->view("items_a", array('id' => $id));
