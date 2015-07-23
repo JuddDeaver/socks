@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Dashboard</title>
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"> -->
+	<title>Orders</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() {
-	    $('select').material_select();
-	    
-	});
+		$(document).ready(function()
+		{
+		    $('select').material_select();
+
+		});
 	</script>
 </head>
+
+
 <body>
 	<div class="wrapper">
 		<nav>
@@ -22,8 +25,7 @@
 					<li>
 						<form name="search" action="search_a" method="POST">
 							<li>			
-								<select>
-									<option value="all">All Fields</option>
+								<select name="search_type">
 									<option value="brand">Brand</option>
 									<option value="name">Name</option>
 									<option value="color">Color(s)</option>
@@ -35,11 +37,12 @@
 							</li>
 							<li>
 								<div class="input-field">
-									<input id="search" type="search" required>
+									<input name="search_term" id="search" type="search" required>
 									<label for="search"><i class="material-icons">search</i></label>
 									<i class="material-icons">close</i>
 								</div>
 							</li>
+							<input type='submit'>
 						</form>
 					</li>
 					<li class="active"><a href="orders_a">Orders</a></li>

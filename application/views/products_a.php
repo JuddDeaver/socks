@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Product Dashboard</title>
+	<title>Products</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() {
-	    $('select').material_select();
-	});
+		$(document).ready(function()
+		{
+		    $('select').material_select();
+
+		});
 	</script>
+	<style type="text/css">
+		a {display: inline-block;}
+	</style>
 </head>
+
+
 <body>
 	<div class="wrapper">
 		<nav>
@@ -19,10 +26,9 @@
 				<a href="/dash_a" class="brand-logo">Dashboard</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li>
-						<form action="search_a" method="POST">
+						<form name="search" action="search_a" method="POST">
 							<li>			
-								<select>
-									<option value="all">All Fields</option>
+								<select name="search_type">
 									<option value="brand">Brand</option>
 									<option value="name">Name</option>
 									<option value="color">Color(s)</option>
@@ -34,15 +40,16 @@
 							</li>
 							<li>
 								<div class="input-field">
-									<input id="search" type="search" required>
+									<input name="search_term" id="search" type="search" required>
 									<label for="search"><i class="material-icons">search</i></label>
 									<i class="material-icons">close</i>
 								</div>
 							</li>
+							<input type='submit'>
 						</form>
 					</li>
-					<li><a href="orders_a">Orders</a></li>
-					<li class="active"><a href="products_a">Products</a></li>
+					<li class="active"><a href="orders_a">Orders</a></li>
+					<li><a href="products_a">Products</a></li>
 					<li><a href="logout_a">Log out</a></li>
 				</ul>
 			</div>
@@ -84,7 +91,10 @@
 					{
 ?>				
 						<tr>
-							<td><a href="items_a/<?= $product['id']; ?>">Edit Product</a></td>
+							<td>
+								<a href="items_a/<?= $product['id']; ?>">Edit Product</a>
+								<a href="items_a/<?= $product['id']; ?>">Delete Product</a>
+							</td>
 							<td><img width='60' src="<?= $image; ?>"></td>
 							<td><?= $product['id']; ?> </td>
 							<td><?= $product['brand']; ?> </td>
