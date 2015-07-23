@@ -204,10 +204,33 @@ class Sock extends CI_Model {
 		return $results;
 	}
 
-public function search_color($color)
-{
-	return search_db(array($color), array('colors'), array('products'));
-}
+
+// pass an array of different colors
+	public function search_color($colors)
+	{
+		$num_colors = count($colors);
+		$query = 
+			"SELECT *
+				FROM socks.select_color
+					join colors on select_color.color_id = colors.id
+					join products on select_color.product_id = products.id
+				WHERE ";
+
+		for ($i = 0; $i < $num_colors; $i++)
+		{
+			$query .= "colors.color = '$colors[$i]' ";
+			if ($i + 1 <  $num_colors)
+			{
+				$query .= " OR ";
+			}
+		}
+
+		$query .= "group by product_id
+		HAVING count(*) >=" . $num_colors;
+		return $this->db->query($query);
+	}
+
+
 	public function get_order_items($id)
 	{
 		$query = 
@@ -241,6 +264,6 @@ public function search_color($color)
 
 	public function delete_product($id)
 	{
-
+		$this->db->query("DELETE FROM products where id=$id");
 	}
 }
