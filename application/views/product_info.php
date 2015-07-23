@@ -63,6 +63,7 @@
 
 		position: relative;
 		top: -10px;
+		border: 1px silver solid;
 	}
 	.back i{
 		line-height: 0;
@@ -184,6 +185,7 @@
 					<input type="hidden" name="id" value="<?=$product_info['id']?>">
 					<input type="hidden" name="picture" value="<?=$product_info['imageurl']?>">
 				</form>
+					<p>Details</p>
 					<p>
 					<?php
 					foreach ($colors as $color)
@@ -194,8 +196,7 @@
 				}
 				?>
 					</p>
-					<p>Details</p>
-					<p><?=$product_info['color']?>/ <?=$product_info['pattern']?>/ <?=$product_info['material']?>/ <?=$product_info['size']?></p>
+					<p><?=$product_info['pattern']?>/ <?=$product_info['material']?>/ <?=$product_info['size']?></p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

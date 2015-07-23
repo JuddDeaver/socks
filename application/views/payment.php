@@ -11,11 +11,11 @@ $contents = $this->cart->contents();
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="/assets/css/style.css">
 	<style type="text/css">
-	* {
-		/*outline: red dotted 1px;*/
-	}
+	/** {
+		outline: red dotted 1px;
+	}*/
 	body {
-		background-color: #eee;
+		background-color: #eee;	
 	}
 	.product_picture{
 		padding: 0px 12px;
@@ -30,27 +30,24 @@ $contents = $this->cart->contents();
 	#name {
 		margin-top: 5px;
 		font-size: 11px;
-		color: grey;
 		border: none;
 		width: 150px;
-	}
+	}/*
 	#price {
 		border: none;
 		color: grey;
-		font-size: 13px;
+		font-size: 10px;
 		text-align: right;
 	}
 	#price_th {
 		text-align: right;
-	}
+	}*/
 	#number input{
 		width: 50px;
 		text-align: right;
 	}
 	#subtotal {
-		text-align: right;
 		color: grey;
-		padding: 25px 0px;
 	}
 	#subtotal b {
 		margin-right: 20px;
@@ -131,17 +128,9 @@ $contents = $this->cart->contents();
 		left: -10px;
 		top: -10px;
 	}
-	.content {
-		/*margin-top: 10px;*/
-	}
-	#name {
-		margin: 0px;
-		font-size: 18px;
-		font-weight: 500;
-	}
 	#price {
-		font-size: 15px;
-		font-weight: 500;
+		font-size: 11px;
+		font-weight: 400;
 		position: relative;
 		top: -5px;
 	}
@@ -152,6 +141,23 @@ $contents = $this->cart->contents();
 		height: 20px;
 		margin: 0px;
 
+	}
+	.content {
+		margin-bottom: 10px;
+		padding-bottom: 5px;
+	}
+	.content2 {
+		background-color: white;
+		padding: 20px;
+	}
+	table {
+		border-collapse: separate;
+	}
+	#total {
+		text-align: right;
+	}
+	.white {
+		margin-bottom: 100px;
 	}
 	</style>
 	<script>
@@ -188,62 +194,143 @@ $contents = $this->cart->contents();
 		<div class="menu_icon right"><i class="material-icons">menu</i></div>
 
 	</div>
-	<div class="content">
-		<div class="row">
-			<div class="col s12">
-				<h5>Shopping Cart</h5>
-				<table class="bordered cart_list">
-		        <thead>
-		          <tr>
-		          	  <th id="picture" data-field="picture">Item</th>
-		              <th data-field="id"></th>
-		              <th data-field="quantity">Quantity</th>
-		              <th id="price_th" data-field="price">Price</th>
-		              <th data-field="change"></th>
-		          </tr>
-		        </thead>
-		        <tbody>
+	<div class="row">
+		<div class="content">
+			<div class="row">
+				<div class="col l6 s12 white ">
+					<table class="bordered cart_list ">
+			        <thead>
+			          <tr>
+			          	  <th id="picture" data-field="picture">Item</th>
+			              <th data-field="id"></th>
+			              <th data-field="quantity">Quantity</th>
+			              <th id="price_th" data-field="price">Price</th>
+			              <th data-field="change"></th>
+			          </tr>
+			        </thead>
+			        <tbody>
 <?php
 if(count($this->cart->contents()>0)) {
 	foreach ($contents as $content){
 ?>
-		          <tr>
-		          	<form method="post" action="edit_cart">
-		            <td><img src="/assets/products/<?=$content['picture']?>" width="50px"></td>
-		            <td><p id="name"><?=$content['name']?></p></td>
-		            <td>
-		            	<input id="number" type="number" name="qty" min="1" max="10" value="<?=$content['qty']?>">
-		            </td>
-		            <td><p id="price">$<?=$content['price']?></p></td>
-		            <td><a href="/remove_cart/<?=$content['rowid']?>"><p id="change" ><img src="/assets/icon_close.png" width="10px"></p></a>
-		      <!--       	<input type="hidden" name="id" value="<?=$content['id']?>"> -->
-		            	<input type="hidden" name="rowid" value="<?=$content['rowid']?>">
-		            	<button type="submit">Edit</button>
-	            	</td>
-		            </form>
-		          </tr>
-<?php
+			          <tr>
+			          	<form method="post" action="edit_cart">
+			            <td><img src="/assets/products/<?=$content['picture']?>" width="30px"></td>
+			            <td><p id="name"><?=$content['name']?></p></td>
+			            <td>
+			            	<input id="number" type="number" name="qty" min="1" max="10" value="<?=$content['qty']?>">
+			            </td>
+			            <td><p id="price">$<?=$content['price']?></p></td>
+			            <td><a href="/remove_cart/<?=$content['rowid']?>"><p id="change" ><img src="/assets/icon_close.png" width="10px"></p></a>
+			      <!--       	<input type="hidden" name="id" value="<?=$content['id']?>"> -->
+			            	<input type="hidden" name="rowid" value="<?=$content['rowid']?>">
+			            	<button type="submit">Edit</button>
+		            	</td>
+			            </form>
+			          </tr>
+	<?php
+		}
 	}
-}
-else 
-{
-?>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-<?php				
-}
-?>
-		          <tr>
-		            <td id="subtotal" colspan="5"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      <a href="/checkout"><p id="checkout"><button type="submit" class="waves-effect black btn-flat" style="color:white">Checkout</button></p></a>
-			</div>
+	else 
+	{
+	?>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+	<?php				
+	}
+	?>
+			          <tr>
+			            <td id="subtotal" colspan="3"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+			            <td id="total" colspan="2"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+			          </tr>
+			          <tr>
+			            <td id="subtotal" colspan="3"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+			            <td id="total" colspan="2"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+			          </tr>
+			          <tr>
+			            <td id="subtotal" colspan="3"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+			            <td id="total" colspan="2"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+			          </tr>
+			        </tbody>
+			      </table>
+		      </div>
+		      <div class="col l6 s12 white">
+					<p>Contact & Shipping</p>
+					 <div class="row">
+					    <form class="col s12">
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input placeholder="Email" id="email" type="email" class="validate">
+					          <label for="email">Your Email Address</label>
+					          <p>Receipts and notifications will be sent to this email address.</p>
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s6">
+					          <input placeholder="First Name" id="first_name" type="text" class="validate">
+					          <label for="first_name">Shipping Address</label>
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s6">
+					          <input placeholder="Last Name" id="last_name" type="text" class="validate">
+					          
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input placeholder="Street Address 1" id="address1" type="text" class="validate">
+					          
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input placeholder="Street Address 2" id="address2" type="text" class="validate">
+					          
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <input placeholder="United States" id="first_name" type="text" class="validate">
+
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s6">
+					          <input placeholder="City" id="first_name" type="text" class="validate">
+
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s6">
+					          <input placeholder="State" id="first_name" type="text" class="validate">
+
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s6">
+					          <input placeholder="Zip / Postal" id="first_name" type="text" class="validate">
+
+					        </div>
+					      </div>
+					      <div class="row">
+					        <div class="input-field col s6">
+					          <input placeholder="Phone Number" id="first_name" type="text" class="validate">
+				
+					        </div>
+					      </div>
+							<a href="/#"><p id="checkout"><button type="submit" class="waves-effect black btn-flat" style="color:white">Checkout</button></p></a>
+					    </form>
+					  </div>
+			
+
+				</div>
 		</div>
 
+	</div>
+	
 	</div>
 	<div class="menu_right">
 			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
