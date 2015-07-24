@@ -62,12 +62,17 @@ class Socks extends CI_Controller {
 
 		$product_info = $this->sock->fetch_product_by_id($id);
 		$colors = $this->sock->get_colors_by_id($id);
+
 		$this->load->view('product_info', array('product_info' => $product_info, 'colors' =>$colors, 'carts' => $carts));
 	}
 	public function mens()
 	{
-		$products = $this->sock->fetch_mens();
-		$this->load->view('mens', array('products' => $products));
+		$this->load->view('mens');
+	}
+	public function mens_pictures()
+	{
+		$data['pictures'] = $this->sock->fetch_mens();
+		$this->load->view('partials/pictures', $data);
 	}
 	public function payment()
 	{

@@ -5,11 +5,17 @@ $contents = $this->cart->contents();
 <html>
 <head>
 	<title>MatchSocks</title>
-	<link rel="stylesheet" href="/assets/css/materialize.css">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/bootstrap.css">
 	<style type="text/css">
 	/** {
 		outline: red dotted 1px;
@@ -20,9 +26,6 @@ $contents = $this->cart->contents();
 	.product_picture{
 		padding: 0px 12px;
 	}
-	.sub_menu{
-		margin-top: 20px;
-	}
 	.cart_list thead{
 		font-size: 10px;
 		color: grey;
@@ -32,16 +35,7 @@ $contents = $this->cart->contents();
 		font-size: 11px;
 		border: none;
 		width: 150px;
-	}/*
-	#price {
-		border: none;
-		color: grey;
-		font-size: 10px;
-		text-align: right;
 	}
-	#price_th {
-		text-align: right;
-	}*/
 	#number input{
 		width: 50px;
 		text-align: right;
@@ -69,13 +63,6 @@ $contents = $this->cart->contents();
 	.pictures img{
 		width: 100%;
 	}
-	/*.main_picture{
-		width: 100%;
-		padding: 65px;
-	}	*/
-/*	.main_picture{
-		padding: 0px 12px;
-	}*/
 	.sub_menu{
 		margin-top: 20px;
 	}
@@ -159,40 +146,24 @@ $contents = $this->cart->contents();
 	.white {
 		margin-bottom: 100px;
 	}
+	@media screen and (min-width: 992px) {
+		.cartlist {
+			margin-right: 10px;
+		}
+	}
 	</style>
 	<script>
-		$(document).ready(function(){
-		    $(".menu_icon").click(function(){
-		        $(".menu_right").animate({width: 'toggle'}, 200);
-		    });
-		    $(".close img").click(function(){
-		        $(".menu_right").animate({width: 'toggle'}, 200);
-		    });
-		    $( ".option li" ).click(function() {
-			  $( ".option ul" ).toggle(200);
-			});
-		});
 	</script>
 </head>
 <body>
-	<div class="menu_left">
-		<div class="middle">
-			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-			<ul class="categories">
-				<li><a href="/mens">MENS</a></li>
-				<li><a href="#">WOMENS</a></li>
-				<li><a href="#">KIDS</a></li>
-			</ul>
-			<ul class="sub-categories">
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</div>	
-	</div>
-	<div class="menu_top">
-		<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
-		<div class="menu_icon right"><i class="material-icons">menu</i></div>
-
+	<div class="content">
+		<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
+		<div class="row">
+			<div class="col l6 s12">
+			</div>
+			<div class="col 16 s12">
+		</div>
+		
 	</div>
 	<div class="row">
 		<div class="content">
@@ -332,22 +303,11 @@ if(count($this->cart->contents()>0)) {
 	</div>
 	
 	</div>
-	<div class="menu_right">
-			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
-			<div class="middle">
-				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-				<ul class="categories">
-					<li><a href="/mens">MENS</a></li>
-					<li><a href="/womens">WOMENS</a></li>
-					<li><a href="/kids">KIDS</a></li>
-				</ul>
-				<ul class="sub-categories">
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>	
-	</div>
+  <div class="menu_right">
+            <?php
+                $this->load->view('partials/menu_right');
+            ?>
+        </div>
 </body>
 </html>
 <body>

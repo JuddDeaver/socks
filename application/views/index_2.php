@@ -1,4 +1,5 @@
 <?php
+$contents = $this->cart->contents();
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,212 +11,95 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/style.css">
     <style type="text/css">
+    * {
+        /*outline: red dotted 1px;*/
+    }
+    body {
+        background-color: #eee; 
+    }
+    #contents {
+        background-color: white;
+        padding: 20px;
+    }
+    .main {
+        margin: 20px auto;
+        width: 900px;
 
-    .main_search{
-        padding: 0px 15px;
-        width: 100%;
     }
-    @media screen and (max-width: 991px) {
-        .main_search {
-            margin-top: 10px;
-        }
+    input {
+      width: 100%;
+      height: 2.5rem;
+      padding: 5px;
+      border: 1px solid #f2f2f2;
+      border-radius: 2px;
+      background-color: rgba(255, 255, 255, .9);
+      font-size: 12px;
     }
-    .border {
-        outline: 3px solid black;
-        padding: 10px;
-        min-height: 400px;
+    .width {
+        width: 100px;
     }
-    .sub_menu{
-        margin-top: 20px;
-    }
-    .close img{
-        width: 20px;
-        position: absolute;
-        right: 20px;
-        top: 20px;
-    }
-    img{
-        width: 100%;
-    }
-    .pattern {
-        font-size: 12px;
-
-        
-    }
-    .pattern div {
-        margin-top: 10px;
-    }
-    .size div {
-        margin-top: 10px;
-    }
-    .size {
-        font-size: 12px;
-    }
-    .style {
-        font-size: 12px;
-    }
-    h5 {
-        font-weight: 500;
-        font-size: 15px;
-        letter-spacing: 4px;
-        margin-left: 10px;
-        text-align: center;
-    }
-
     </style>
     <script>
-        $(document).ready(function(){
-            $.get('/socks/menu_left', function(res){
-                $('.menu_left').html(res);
-            });
-            $(".menu_icon").click(function(){
-                $(".menu_right").animate({width: 'toggle'}, 200);
-            });
-            $(".close img").click(function(){
-                $(".menu_right").animate({width: 'toggle'}, 200);
-            });
-            $(".cart").click(function() {
-                window.location='/view_cart';
-            });
-        });
-        $(document).on("click", ".add", function(){
-           $(this).before("<input class='full' />"); 
-            $('.full:empty').spectrum({
-               showPaletteOnly: true, // if you want to only have the palette
-               showPalette:true,
-               palette: [ // here the colors you want to have on your palette
-                 ['black', 'white', 'blanchedalmond',
-                 ['red', 'yellow', 'green', 'blue', 'violet']
-               ]
-            });
-        });
     </script>
 </head>
 <body>
-<?php if(  count ($this->cart->total_items() ) > 0 )
-{
-?>
-    <div class="cart valign-wrapper hide-on-small-only">
-      <?php
-        $this->load->view('partials/cart');
-      ?>
-    </div>
-<?
-}
-?> 
-    <div class="row">
-        <div class="menu_left hide-on-med-and-down">
-            <?php
-                $this->load->view('partials/menu_left');
-            ?>
-        </div>
-        <div class="menu_top hide-on-large-only">
-            <?php
-                $this->load->view('partials/menu_top');
-            ?>
-        </div>
-        <div class="content">
-            <div class="main_search ">
-                <div class="border">
-                    <h5>FIND A MATCH </h5>
-                    <div class="col s12 m6">
-                        <ul class="collapsible z-depth-1" data-collapsible="accordion">
-                            <li>
-                              <div class="collapsible-header">Color</div>
-                              <div class="collapsible-body">
-                                 <div class="colorpicker-container">
-                                    <input class="full" />
-                                    <a class="add" href="#">+ Add</a>  
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="collapsible-header">Pattern</div>
-                              <div class="collapsible-body ">
-                                <div class="row pattern ">
-                                  <div class="col s6">ARGYLE</div>
-                                  <div class="col s6">CHARACTERS</div>
-                                  <div class="col s6">CHECKERED</div>
-                                  <div class="col s6">CROSSHATCH</div>
-                                  <div class="col s6">DOTS</div>
-                                  <div class="col s6">FAIR ISLE</div>
-                                  <div class="col s6">FLECKS</div>
-                                  <div class="col s6">FLORAL</div>
-                                  <div class="col s6">GEOMETRIC</div>
-                                  <div class="col s6">PAISLEY</div>
-                                  <div class="col s6">SOLID</div>
-                                  <div class="col s6">STRIPES</div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="collapsible-header">Size</div>
-                              <div class="collapsible-body">
-                                    <div class="row size">
-                                        <div class="col s2">XS</div>
-                                        <div class="col s2">S</div>
-                                        <div class="col s2">M</div>
-                                        <div class="col s2">L</div>
-                                        <div class="col s2">XL</div>
-                                    </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="collapsible-header">Style</div>
-                              <div class="collapsible-body">
-                                <div class="row style">
-                                    <div class="col s4">MEN</div>
-                                    <div class="col s4">WOMEN</div>
-                                    <div class="col s4">KIDS</div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="collapsible-header">Brand</div>
-                              <div class="collapsible-body">
-                                <input type="text" name="brand">
-                              </div>
-                            </li>
-                          </ul>
-                          <button>FIND</button>
-                    </div>
-                    <div class="col s12 m6">
-                        -OR-
-                        Upload a picture
+    <div class="main">
+        <div class="logo_left"><a href="/">MATCHSOCKS</a></div>
+        <div class="row">
+            <div class="col l6 s12">
+                <div class="contact" id="contents">
+                    <div class="row">
+                        <p>Contact & Shipping</p>
+                        <form>
+                            <p>Your email address</p>
+                            <input type="text" class="col s12" placeholder="Email">
+                            <p>Receipts and notifications will be sent to this email address.</p>
+                            <p>Shipping Address</p>
+                            <input type="text" class="col m6 s12" placeholder="First Name">
+                            <input type="text" class="col m6 s12" placeholder="Last Name">
+                            <input type="text" class="col s12" placeholder="Street Address 1">
+                            <input type="text" class="col s12" placeholder="Street Address 2">
+                            <select class="browser-default">
+                              <option value="1">United States</option>
+                            </select>
+                            <input type="text" class="col s5" placeholder="City">
+                            <select class="browser-default width">
+                              <option value=""disabled selected></option>
+                              <option value="1">CA</option>
+                              <option value="1">OR</option>
+                              <option value="1">WA</option>
+                              <option value="1">NY</option>
+                              <option value="1">HI</option>
+                            </select>
+                            <input type="text" class="col s4" placeholder="Zip / Postal">
+                            <input type="text" class="col s12" placeholder="Phone Number">
 
-                        COMING SOON
+
+                            <div class="row">
+                              <div class="col-xs-2">
+                                <input type="text" class="form-control" placeholder=".col-xs-2">
+                              </div>
+                              <div class="col-xs-3">
+                                <input type="text" class="form-control" placeholder=".col-xs-3">
+                              </div>
+                              <div class="col-xs-4">
+                                <input type="text" class="form-control" placeholder=".col-xs-4">
+                              </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
+                
             </div>
-            <div class="row sub_menu">
-                <div class="col s12 m4"><a href="mens"><img src="/assets/mens.jpg"></a>
+            <div class="col l6 s12">
+                <div class="orders" id="contents">
+                Order Summary
                 </div>
-                <div class="col s12 m4"><a href="womens"><img src="/assets/womens.jpg"></a></div>
-                <div class="col s12 m4"><a href="kids"><img src="/assets/kids.jpg"></a></div>   
-            </div>
-            <div class="row sub_menu">
-                <div class="col s12 m6"><a href="/about"><img src="/assets/menu_pic2.jpg"></a></div>
-                <div class="col s12 m6"><a href="/news"><img src="/assets/menu_pic1.jpg"></a></div>
             </div>
         </div>
-        <div class="menu_right">
-            <?php
-                $this->load->view('partials/menu_left');
-            ?>
-        </div>
-
-<?php if(  count ($this->cart->total_items() ) > 0 )
-{
-?>
-    <div class="cart_bottom valign-wrapper hide-on-med-and-up">
-      <?php
-        $this->load->view('partials/cart');
-      ?>
+        
     </div>
-<?
-}
-?>        
 
-    </div>
 </body>
 </html>
+<body>

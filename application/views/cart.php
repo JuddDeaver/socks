@@ -14,19 +14,13 @@ $contents = $this->cart->contents();
 	* {
 		/*outline: red dotted 1px;*/
 	}
-	.product_picture{
-		padding: 0px 12px;
-	}
-	.sub_menu{
-		margin-top: 20px;
-	}
 	.cart_list thead{
 		font-size: 10px;
 		color: grey;
 	}
 	#name {
 		margin-top: 5px;
-		font-size: 11px;
+		font-size: 10px;
 		color: grey;
 		border: none;
 		width: 150px;
@@ -65,20 +59,6 @@ $contents = $this->cart->contents();
 	#checkout {
 		text-align: right;
 	}
-	
-	.pictures img{
-		width: 100%;
-	}
-	/*.main_picture{
-		width: 100%;
-		padding: 65px;
-	}	*/
-/*	.main_picture{
-		padding: 0px 12px;
-	}*/
-	.sub_menu{
-		margin-top: 20px;
-	}
 	.close img{
 		width: 20px;
 		position: absolute;
@@ -92,21 +72,6 @@ $contents = $this->cart->contents();
 		color: gray;
 		line-height: 19px;
 	}
-	.option {
-		padding-left: 0px;
-		margin: 0 10px;
-	}
-	.option ul {
-		display: none;
-	}
-	.option li ul li {
-	}
-	.similar img {
-		width: 100%;
-	}
-	.product_picture img {
-		width: 100%;
-	}
 	.product input {
 		border: none;
 		display: inline-block;
@@ -115,21 +80,6 @@ $contents = $this->cart->contents();
 
 		position: relative;
 		top: -10px;
-	}
-	.back i{
-		line-height: 0;
-		position: relative;
-		top: 10px;
-	}
-	.back {
-		cursor: pointer;
-		width: 100px;
-		position: relative;
-		left: -10px;
-		top: -10px;
-	}
-	.content {
-		/*margin-top: 10px;*/
 	}
 	#name {
 		margin: 0px;
@@ -166,25 +116,17 @@ $contents = $this->cart->contents();
 	</script>
 </head>
 <body>
-	<div class="menu_left">
-		<div class="middle">
-			<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-			<ul class="categories">
-				<li><a href="/mens">MENS</a></li>
-				<li><a href="#">WOMENS</a></li>
-				<li><a href="#">KIDS</a></li>
-			</ul>
-			<ul class="sub-categories">
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</div>	
-	</div>
-	<div class="menu_top">
-		<div class="logo_top"><a href="/">MATCHSOCKS</a></div>
-		<div class="menu_icon right"><i class="material-icons">menu</i></div>
-
-	</div>
+    <div class="row">
+        <div class="menu_left hide-on-med-and-down">
+            <?php
+                $this->load->view('partials/menu_left');
+            ?>
+        </div>
+        <div class="menu_top hide-on-large-only">
+            <?php
+                $this->load->view('partials/menu_top');
+            ?>
+        </div>
 	<div class="content">
 		<div class="row">
 			<div class="col s12">
@@ -242,22 +184,11 @@ else
 		</div>
 
 	</div>
-	<div class="menu_right">
-			<p class="close"><img class="close" src="/assets/icon_close.png"></p>
-			<div class="middle">
-				<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-				<ul class="categories">
-					<li><a href="/mens">MENS</a></li>
-					<li><a href="/womens">WOMENS</a></li>
-					<li><a href="/kids">KIDS</a></li>
-				</ul>
-				<ul class="sub-categories">
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>	
-	</div>
+	       <div class="menu_right">
+            <?php
+                $this->load->view('partials/menu_right');
+            ?>
+        </div>
 </body>
 </html>
 <body>

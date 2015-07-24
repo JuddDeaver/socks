@@ -36,6 +36,9 @@
 			$(".cart").click(function() {
 		    	window.location='/view_cart';
 		    });
+		    $.get('/socks/mens_pictures', function(res){
+		   		$('.pictures').html(res);
+	   		});
 		});
 	</script>
 </head>
@@ -90,35 +93,7 @@
 			</form>
 		</div>
 		<div class="row pictures">
-<?php foreach($products as $product)
-{
-?>
-			<div class="col s6 m3">
-				<a href="/product_info/<?=$product['id']?>">
-				<img src="/assets/products/<?=$product['imageurl']?>">
-				<p><?=$product['name']?></p>
-				<p class="price">$<?=$product['price']?></p>
-				</a>
-			</div>
-<?php
-}
-?>
-			<div class="col s6 m3">
-				<img src="/assets/grey.png">
-				<p>name</p>
-				<p class="price">price</p>
-			</div>
-
 		</div>
-	<!-- 	<ul class="pagination">
-		    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-		    <li class="active"><a href="#!">1</a></li>
-		    <li class="waves-effect"><a href="#!">2</a></li>
-		    <li class="waves-effect"><a href="#!">3</a></li>
-		    <li class="waves-effect"><a href="#!">4</a></li>
-		    <li class="waves-effect"><a href="#!">5</a></li>
-		    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-		  </ul> -->
 	</div>
 
   
