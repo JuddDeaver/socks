@@ -10,13 +10,15 @@
 		$(document).ready(function()
 		{
 		    $('select').material_select();
-		    $('a#delete_product').bind('click', function()
+		    $('a.delete_product').bind('click', function()
 			{
-				// alert("I am an alert box!"); 
+				console.log($(this));
+				// break;
+				// alert($('a#delete_product')[0].href); 
 				if (confirm('Delete?')) {
-					window.location.href="/delete_product/<?= $product['id'] ?>";
+					window.location.href="$('a#delete_product')[0].href";
 				} else {
-				    alert('Why did you press cancel? You should have confirmed');
+				    return false;
 				}
 			});
 		});
@@ -56,8 +58,8 @@
 							<input type='submit'>
 						</form>
 					</li>
-					<li class="active"><a href="orders_a">Orders</a></li>
-					<li><a href="products_a">Products</a></li>
+					<li><a href="orders_a">Orders</a></li>
+					<li class="active"><a href="products_a">Products</a></li>
 					<li><a href="logout_a">Log out</a></li>
 				</ul>
 			</div>
@@ -100,7 +102,8 @@
 						<tr>
 							<td>
 								<a href="edit_product/<?= $product['id']; ?>">Edit</a>
-								<a id="delete_product" href="delete_product/<?= $product['id']; ?>">Delete</a>
+								 | 
+								<a class="delete_product" id="<?= $product['id']; ?>" href="delete_product/<?= $product['id']; ?>">Delete</a>
 							</td>
 							<td><img width='60' src="<?= $image; ?>"></td>
 						    <td><?= $product['inventory']; ?> </td>

@@ -7,12 +7,19 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function()
-		{
-		    $('select').material_select();
-
-		});
-	</script>
+			$(document).ready(function()
+			{
+			    $('select').material_select();
+			    $('a.delete_product').bind('click', function()
+				{
+					if (confirm('Delete?')) {
+						window.location.href="$('a#delete_product')[0].href";
+					} else {
+					    return false;
+					}
+				});
+			});
+		</script>
 </head>
 
 
@@ -91,7 +98,7 @@
 								<td>
 								<a href="edit_product/<?= $product['id']; ?>">Edit</a>
 								| 
-								<a href="delete_product/<?= $product['id']; ?>">Delete</a>
+								<a class="delete_product" id="<?= $product['id']; ?>" href="delete_product/<?= $product['id']; ?>">Delete</a>
 								</td>
 								<td><img width='60' src="<?= $image; ?>"></td>
 								<td><?= $product['id']; ?> </td>
