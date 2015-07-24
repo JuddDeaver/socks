@@ -1,6 +1,4 @@
-<?php
-$contents = $this->cart->contents();
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,14 +45,14 @@ $contents = $this->cart->contents();
 		margin-right: 20px;
 		font-weight: normal;
 	}
-	#change {
+	#remove {
 		text-align: right;
 	}
 	#picture {
 		width: 70px;
 	}
 	td {
-		padding: 0px;
+		padding: 10px;
 	}
 	#checkout {
 		text-align: right;
@@ -68,6 +66,9 @@ $contents = $this->cart->contents();
 	.price {
 		color: gray;
 		line-height: 19px;
+	}
+	#price_th{
+		width: 100px;
 	}
 	.product input {
 		border: none;
@@ -97,6 +98,9 @@ $contents = $this->cart->contents();
 		margin: 0px;
 
 	}
+	#thumbnail {
+	 	width: 50px;
+	}
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -109,15 +113,32 @@ $contents = $this->cart->contents();
 		    $( ".option li" ).click(function() {
 			  $( ".option ul" ).toggle(200);
 			});
-		  	$(document).on("change", ".desc", function(){
-		  		alert('here');
-		  		
-		  // 		$.post(
-				// "/notes/edit_cart",
-				// $(this).parent().serialize(),
-				// function(res){
-				// 	console.log(res);
+			//load shopping cart table//
+			$.get("/socks/shopping_cart", function(res){
+				$(".shopping_cart").html(res);
+
+
+			return false;
+		});
+			//dynamic content
+		  	$(document).on("change", ".number", function(){
+		  		// alert('here');
+		  		$.post(
+		  			"/socks/edit_cart",
+		  			$(this).parent().serialize(),
+	  				function(res){
+	  					$(".shopping_cart").html(res);
+	  				});
 			});
+			 $(document).on("click", "#remove", function(){
+					$.post(
+						"/socks/remove_cart",
+						$(this).parent().serialize(),
+						function(res){
+							$(".shopping_cart").html(res);
+						});
+			  });
+		  	
 		});
 	</script>
 </head>
@@ -137,54 +158,11 @@ $contents = $this->cart->contents();
 		<div class="row">
 			<div class="col s12">
 				<h5>Shopping Cart</h5>
-				<table class="bordered cart_list">
-		        <thead>
-		          <tr>
-		          	  <th id="picture" data-field="picture">Item</th>
-		              <th data-field="id"></th>
-		              <th data-field="quantity">Quantity</th>
-		              <th id="price_th" data-field="price">Price</th>
-		              <th data-field="change"></th>
-		          </tr>
-		        </thead>
-		        <tbody>
-<?php
-if(count($this->cart->contents()>0)) {
-	foreach ($contents as $content){
-?>
-		          <tr>
-		          	<form method="post" action="edit_cart">
-		            <td><img src="/assets/products/<?=$content['picture']?>" width="50px"></td>
-		            <td><p id="name"><?=$content['name']?></p></td>
-		            <td>
-		            	<input id="number" type="number" name="qty" min="1" max="10" value="<?=$content['qty']?>">
-		            </td>
-		            <td><p id="price">$<?=$content['price'] * $content['qty']?></p></td>
-		            <td><a href="/remove_cart/<?=$content['rowid']?>"><p id="change" ><img src="/assets/icon_close.png" width="10px"></p></a>
-		      <!--       	<input type="hidden" name="id" value="<?=$content['id']?>"> -->
-		            	<input type="hidden" name="rowid" value="<?=$content['rowid']?>">
-		            	<button type="submit">Edit</button>
-	            	</td>
-		            </form>
-		          </tr>
-<?php
-	}
-}
-else 
-{
-?>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-<?php				
-}
-?>
-		          <tr>
-		            <td id="subtotal" colspan="5"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-		          </tr>
-		        </tbody>
-		      </table>
+					<div class="shopping_cart">
+						<?php
+							$this->load->view('partials/shopping_cart');
+						?>
+		      		</div>
 		      <a href="/checkout"><p id="checkout"><button type="submit" class="waves-effect black btn-flat" style="color:white">Checkout</button></p></a>
 			</div>
 		</div>

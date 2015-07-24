@@ -104,6 +104,7 @@
 	</script>
 </head>
 <body>
+	
 <?php if(  count ($this->cart->total_items() ) > 0 )
 {
 ?>

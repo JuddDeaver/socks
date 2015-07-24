@@ -17,6 +17,11 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view('cart');
 	}
+	public function shopping_cart()
+	{
+		$contents = $this->cart->contents();
+		$this->load->view('partials/shopping_cart', array('contents' =>$contents));
+	}
 	public function cart()
 	{
 		// var_dump($this->input->post());
@@ -51,6 +56,29 @@ class Socks extends CI_Controller {
 			$this->session->set_flashdata('messages', $success);
 		}
 	}
+	public function edit_cart()
+	{
+		
+		$edit_data = array(
+			'rowid' => $this->input->post('rowid'),
+			'qty' => $this->input->post('qty'));
+		
+		$this->cart->update($edit_data);
+		$contents = $this->cart->contents();
+		$this->load->view('partials/shopping_cart', array('contents' =>$contents));
+
+	}
+	public function remove_cart()
+	{
+		$id = $this->input->post('rowid');
+		$remove_data = array(
+			'rowid' => $id,
+			'qty' => 0);
+		$this->cart->update($remove_data);
+
+		$contents = $this->cart->contents();
+		$this->load->view('partials/shopping_cart', array('contents' =>$contents));
+	}
 	public function login()
 	{
 		$this->load->view('login');
@@ -77,24 +105,6 @@ class Socks extends CI_Controller {
 	public function payment()
 	{
 		$this->load->view('payment');
-	}
-	public function edit_cart()
-	{
-		
-		$edit_data = array(
-			'rowid' => $this->input->post('rowid'),
-			'qty' => $this->input->post('qty'));
-		
-		$this->cart->update($edit_data);
-		redirect('/view_cart');
-	}
-	public function remove_cart($id)
-	{
-		$remove_data = array(
-			'rowid' => $id,
-			'qty' => 0);
-		$this->cart->update($remove_data);
-		redirect('/view_cart');
 	}
 	public function checkout()
 	{
@@ -170,5 +180,11 @@ class Socks extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(base_url());
 		die();
+	}
+	public function proceed()
+	{
+		var_dump($this->input->post());
+		die();
+		$this->load->view("receipt");
 	}
 }

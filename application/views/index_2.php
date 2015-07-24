@@ -1,217 +1,57 @@
-<?php
-$contents = $this->cart->contents();
-?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
 <head>
-    <title>MatchSocks</title>
-    <link rel="stylesheet" href="/assets/css/materialize.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <style type="text/css">
-    * {
-        /*outline: red dotted 1px;*/
-    }
-    body {
-        background-color: #eee; 
-    }
-    #contents {
-        background-color: white;
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    .main {
-        margin: 20px auto;
-        width: 900px;
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="Content-Script-Type" content="text/javascript">
+<meta name="Content-Style-Type" content="text/css">
+<title>Example</title>
 
-    }
-    input {
-      width: 100%;
-      height: 2.5rem;
-      padding: 5px;
-      border: 1px solid #f2f2f2;
-      border-radius: 2px;
-      background-color: rgba(255, 255, 255, .9);
-      font-size: 12px;
-      color: grey;
-    }
-    select {
-      width: 100%;
-      height: 2.5rem;
-      padding: 5px;
-      border: 1px solid #f2f2f2;
-      border-radius: 2px;
-      background-color: rgba(245, 245, 245, .9);
-      font-size: 12px;
-      color: grey;
-    }
-    </style>
-    <script>
-    </script>
+<script type="text/javascript">
+<!--
+function copyBilling (f) {
+  var s, i = 0;
+  while (s = ['A', 'B', 'C', 'D', 'country', 'pc'][i++]) {f.elements['shipping_' + s].value = f.elements['bill_' + s].value};
+}
+// -->
+</script>
+
+<style type="text/css">
+<!-- 
+fieldset, form {padding:1ex; width:25em} 
+label {display:block; text-align:right}
+input {margin-left:1em}
+button {display:block; margin:auto}
+-->
+</style>
+
 </head>
 <body>
-    <div class="main">
-        <div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-        <div class="row">
-            <div class="col l6 s12">
-                <div class="contact" id="contents">
-                    <div class="row">
-                        <p>Contact & Shipping</p>
-                        <form>
-                            <p>Your email address</p>
-                            <div class="input-field col s12">
-                            <input type="text" placeholder="Email">
-                            </div>
-                            <p>Receipts and notifications will be sent to this email address.</p>
-                            <p>Shipping Address</p>
-                            <div class="input-field col m6 s12">
-                               <input type="text"placeholder="First Name">
-                             </div>
-                             <div class="input-field col m6 s12">
-                            <input type="text" placeholder="Last Name">
-                            </div>
-                            <div class="input-field col s12">
-                              <input type="text" placeholder="Street Address 1">
-                            </div>
-                            <div class="input-field col s12">
-                              <input type="text" placeholder="Street Address 2">
-                            </div>
-                            <div class="input-field col s12">
-                              <select class="browser-default">
-                                <option value="1">United States</option>
-                              </select>
-                            </div>
-                            <div class="input-field col s5">
-                              <input type="text" placeholder="City">
-                            </div>
-                            <div class="input-field col s3">
-                              <select class="browser-default">
-                                <option value=""disabled selected></option>
-        <?php
-        $states = $this->sock->get_states();
-foreach ($states as $state){
-        ?>
-                              <option name="state" value="<?=$state['code']?>"><?=$state['code']?></option>
-<?php
-}
-?>
-                              </select>
-                            </div>
-                            <div class="input-field col s4">
-                              <input type="text" placeholder="Zip / Postal">
-                            </div>
-                            <div class="input-field col s12">
-                              <input type="text" placeholder="Phone Number">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col l6 s12">
-                <div class="orders" id="contents">
-                Order Summary
-                </div>
-            </div>
-            <div class="col l6 s12">
-                <div class="orders" id="contents">
-                  <div class="row">
-                    <form>
-                            <p>Billing Address</p>
-                            
-                            <div class="input-field col s12">
-                              <input type="text" placeholder="Street Address 1">
-                            </div>
-                            <div class="input-field col s12">
-                              <input type="text" placeholder="Street Address 2">
-                            </div>
-                            <div class="input-field col s12">
-                              <select class="browser-default">
-                                <option value="1">United States</option>
-                              </select>
-                            </div>
-                            <div class="input-field col s5">
-                              <input type="text" placeholder="City">
-                            </div>
-                            <div class="input-field col s3">
-                              <select class="browser-default">
-                                <option value=""disabled selected></option>
-        <?php
-$states = $this->sock->get_states();
-foreach ($states as $state){
-        ?>
-                              <option name="state" value="<?=$state['code']?>"><?=$state['code']?></option>
-<?php
-}
-?>
-                              </select>
-                            </div>
-                            <div class="input-field col s4">
-                              <input type="text" placeholder="Zip / Postal">
-                            </div>
-                            <div class="input-field col s12">
-                              <input type="text" placeholder="Phone Number">
-                            </div>
-                            <div class="input-field col s12">
-                              <select class="browser-default">
-         <?php
-$states = $this->sock->get_cards();
-foreach ($cards as $card){
-        ?>
-                              <option name="card" value="<?=$card['type']?>"><?=$card['type']?></option>
-<?php
-}
-?>
-                                </select>
-                            </div>
-                            <div class="input-field col m6 s12">
-                               <input type="text"placeholder="Name on Card">
-                             </div>
-                             <div class="input-field col m6 s12">
-                              <input type="text" placeholder="Card number">
-                            </div>
-                              <div class="input-field col s3">
-                                <select class="browser-default">
-                                  <option value="01">JAN</option>
-                                  <option value="02">FEB</option>
-                                  <option value="03">MAR</option>
-                                  <option value="04">APR</option>
-                                  <option value="05">MAY</option>
-                                  <option value="06">JUN</option>
-                                  <option value="07">JUL</option>
-                                  <option value="08">AUG</option>
-                                  <option value="09">SEP</option>
-                                  <option value="10">OCT</option>
-                                  <option value="11">NOV</option>
-                                  <option value="12">DEC</option>
-                                </select>
-                            </div>
-                              <div class="input-field col s3">
-                              <select class="browser-default">
-                                <?php
-                                 for($i=date("Y"); $i<=date("Y")+10; $i++)
-                                 {
-                                  ?>
-                                    <option value="<?=$i?>"><?=$i?></option>
-                                  <?php
-                                 }
-                                     
-                                ?>
-                              </select>
-                            </div>
-                            <div class="input-field col s12">
-                            <a href="/#"><p id="checkout"><button type="submit" class="waves-effect black btn-flat" style="color:white">Proceed</button></p></a>
-                            </div>
-                        </form>
-                  </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+<form action="some-script.pl" onsubmit="total (this)">
 
+<fieldset>
+<legend>Billing Address</legend>
+<label>House Name/Number :<INPUT TYPE="TEXT" NAME="bill_A" SIZE=30></label>
+<label>Street :<INPUT TYPE="TEXT" NAME="bill_B" SIZE=30></label>
+<label>City :<INPUT TYPE="TEXT" NAME="bill_C" SIZE=30></label>
+<label>Region :<INPUT TYPE="TEXT" NAME="bill_D" SIZE=30></label> 
+<label>Country :<INPUT TYPE="TEXT" NAME="bill_country" SIZE=30></label>
+<label>Post Code :<INPUT TYPE="TEXT" NAME="bill_pc" SIZE=30></label>
+</fieldset>
+
+<fieldset>
+<legend>Shipping Address</legend>
+<label style="text-align:left"><input name="same" onclick="if (this.checked) copyBilling (this.form)" type="checkbox">Same as billing</label>
+<label>House Name/Number :<INPUT TYPE="TEXT" NAME="shipping_A" SIZE=30></label>
+<label>Street :<INPUT TYPE="TEXT" NAME="shipping_B" SIZE=30></label>
+<label>City :<INPUT TYPE="TEXT" NAME="shipping_C" SIZE=30></label>
+<label>Region :<INPUT TYPE="TEXT" NAME="shipping_D" SIZE=30></label> 
+<label>Country :<INPUT TYPE="TEXT" NAME="shipping_country" SIZE=30></label>
+<label>Post Code :<INPUT TYPE="TEXT" NAME="shipping_pc" SIZE=30></label>
+</fieldset>
+
+<div><button type="submit">Submit</button></div>
+
+</form>
 </body>
 </html>
-<body>

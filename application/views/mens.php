@@ -67,11 +67,31 @@
         </div>
 	<div class="content">
 		<div class="row">
-			<form>
+			<form method="post" action="">
 			<ul class="collapsible z-depth-1" data-collapsible="accordion">
 			    <li>
 			      <div class="collapsible-header">Color</div>
-			      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+			      <div class="collapsible-body">
+			      	<form action="#">
+					    <p>
+					      <input type="checkbox" class="filled-in" id="filled-in-box"  />
+					      <label for="filled-in-box">Red</label>
+					    </p>
+					    <p>
+					      <input type="checkbox" class="filled-in" id="filled-in-box"  />
+					      <label for="filled-in-box">White</label>
+					    </p>
+					    <p>
+					      <input type="checkbox" class="filled-in" id="filled-in-box"  />
+					      <label for="filled-in-box">Black</label>
+					    </p>
+					    <p>
+					      <input type="checkbox" class="filled-in" id="filled-in-box"  />
+					      <label for="filled-in-box">Yellow</label>
+					    </p>
+					    <button type="submit">Search</button>
+					  </form>
+			      </div>
 			    </li>
 			    <li>
 			      <div class="collapsible-header">Pattern</div>

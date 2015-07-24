@@ -25,6 +25,9 @@ h5 {
 
     width: 20px;
 }
+#remove {
+    cursor: pointer;
+}
 @media screen and (min-width: 992px) {
     .content {
         position: absolute;

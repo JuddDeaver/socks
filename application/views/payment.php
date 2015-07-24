@@ -1,313 +1,345 @@
-<?php
-$contents = $this->cart->contents();
-?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MatchSocks</title>
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>MatchSocks</title>
+    <link rel="stylesheet" href="/assets/css/materialize.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style type="text/css">
+    * {
+        /*outline: red dotted 1px;*/
+    }
+    body {
+        background-color: #eee; 
+    }
+    #contents {
+        background-color: white;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .main {
+        margin: 20px auto;
+        width: 900px;
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    }
+    input {
+      width: 100%;
+      height: 2.5rem;
+      padding: 5px;
+      border: 1px solid #f2f2f2;
+      border-radius: 2px;
+      background-color: rgba(255, 255, 255, .9);
+      font-size: 12px;
+      color: grey;
+    }
+    select {
+      width: 100%;
+      height: 2.5rem;
+      padding: 5px;
+      border: 1px solid #f2f2f2;
+      border-radius: 2px;
+      background-color: rgba(245, 245, 245, .9);
+      font-size: 12px;
+      color: grey;
+    }
+    .checkbox input {
+    	width: 10px;
+    }
+    table {
+      border-collapse: separate;
+    }
+    td {
+      padding: 5px;
+      font-size: 11px;
+    }
+    th {
+      font-size: 9px;
+      font-weight: 400;
+    }
+    #thumbnail {
+      width: 30px;
+    }
+    .number {
+      width: auto;
+    }
+    .update {
+      text-align: right;
+    }
+    #quantity_th {
+      text-align: right;
+    }
+    #price_th {
+      text-align: right;
+    }
+    #price {
+      text-align: right;
+    }
+    .label {
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0px 0px 0px 5px;
+    }
+    .title {
+      margin-left: 5px;
+    }
+    #info {
+      margin: 55px 0px 20px 5px;
+      font-size: 10px;
+    }
+    .logo_left {
+      margin-left: 5px;
+      margin-bottom: 15px;
+    }
+    </style>
+    <script>
+      $(document).ready(function(){
+      //load shopping cart table//
+        $.get("/socks/shopping_cart", function(res){
+          $(".shopping_cart").html(res);
+        
+          });
+        $('#same').click(function(){
+              if($('#same').is(':checked')){
+                // alert('works');
+                  $('#billing_fname').val($('#shipping_fname').val());
+                  $('#billing_lname').val($('#shipping_lname').val());
+                  $('#billing_street1').val($('#shipping_street1').val());
+                  $('#billing_street2').val($('#shipping_street2').val());
+                  $('#billing_city').val($('#shipping_city').val());
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="/assets/css/style.css">
-	<link rel="stylesheet" href="/assets/css/bootstrap.css">
-	<style type="text/css">
-	/** {
-		outline: red dotted 1px;
-	}*/
-	body {
-		background-color: #eee;	
-	}
-	.product_picture{
-		padding: 0px 12px;
-	}
-	.cart_list thead{
-		font-size: 10px;
-		color: grey;
-	}
-	#name {
-		margin-top: 5px;
-		font-size: 11px;
-		border: none;
-		width: 150px;
-	}
-	#number input{
-		width: 50px;
-		text-align: right;
-	}
-	#subtotal {
-		color: grey;
-	}
-	#subtotal b {
-		margin-right: 20px;
-		font-weight: normal;
-	}
-	#change {
-		text-align: right;
-	}
-	#picture {
-		width: 70px;
-	}
-	td {
-		padding: 0px;
-	}
-	#checkout {
-		text-align: right;
-	}
-	
-	.pictures img{
-		width: 100%;
-	}
-	.sub_menu{
-		margin-top: 20px;
-	}
-	.close img{
-		width: 20px;
-		position: absolute;
-		right: 20px;
-		top: 20px;
-	}
-	.content h5 {
-		padding: 0 10px;
-	}
-	.price {
-		color: gray;
-		line-height: 19px;
-	}
-	.option {
-		padding-left: 0px;
-		margin: 0 10px;
-	}
-	.option ul {
-		display: none;
-	}
-	.option li ul li {
-	}
-	.similar img {
-		width: 100%;
-	}
-	.product_picture img {
-		width: 100%;
-	}
-	.product input {
-		border: none;
-		display: inline-block;
-	}
-	#quantity input{
+                  var state = $('#shipping_state option:selected').val();
+                  console.log(state);
+                  $('#billing_state option[value=' + state + ']').attr('selected','selected');
 
-		position: relative;
-		top: -10px;
-	}
-	.back i{
-		line-height: 0;
-		position: relative;
-		top: 10px;
-	}
-	.back {
-		cursor: pointer;
-		width: 100px;
-		position: relative;
-		left: -10px;
-		top: -10px;
-	}
-	#price {
-		font-size: 11px;
-		font-weight: 400;
-		position: relative;
-		top: -5px;
-	}
-	#price input {
-		display: inline-block;
-		width: 100px;
-		font-size: 15px;
-		height: 20px;
-		margin: 0px;
+                  $('#billing_zip').val($('#shipping_zip').val());
+                  $('#billing_phone').val($('#shipping_phone').val());
+                  // var state = $('#state-field option:selected').val();
+                  // $('#state-field1 option[value=' + state + ']').attr('selected','selected');
+              } else { 
+                  //Clear on uncheck
+                  $('#billing_fname').val("");
+                  $('#billing_lname').val("");
+                  $('#billing_street1').val("");
+                  $('#billing_street2').val("");
+                  $('#billing_country option[value=Nothing]').attr('selected','selected');
+                  $('#billing_city').val("");
+                  $('#billing_state option[value=Nothing]').attr('selected','selected');
+                  $('#billing_zip').val("");
+                  $('#billing_phone').val("");
+                  // $('#address-field1').val("");
+                  // $('#city-field1').val("");
+                  // $('#zip-field1').val("");
+                  // $('#state-field1 option[value=Nothing]').attr('selected','selected');
+              };
 
-	}
-	.content {
-		margin-bottom: 10px;
-		padding-bottom: 5px;
-	}
-	.content2 {
-		background-color: white;
-		padding: 20px;
-	}
-	table {
-		border-collapse: separate;
-	}
-	#total {
-		text-align: right;
-	}
-	.white {
-		margin-bottom: 100px;
-	}
-	@media screen and (min-width: 992px) {
-		.cartlist {
-			margin-right: 10px;
-		}
-	}
-	</style>
-	<script>
-	</script>
+          });
+          return false;
+      
+      });
+        $(document).on("change", ".number", function(){
+        // alert('here');
+        $.post(
+          "/socks/edit_cart",
+          $(this).parent().serialize(),
+          function(res){
+            $(".shopping_cart").html(res);
+          });
+        });
+         $(document).on("click", "#remove", function(){
+          $.post(
+            "/socks/remove_cart",
+            $(this).parent().serialize(),
+            function(res){
+              $(".shopping_cart").html(res);
+            });
+        });
+    </script>
 </head>
 <body>
-	<div class="content">
-		<div class="logo_left"><a href="/">MATCHSOCKS</a></div>
-		<div class="row">
-			<div class="col l6 s12">
-			</div>
-			<div class="col 16 s12">
-		</div>
-		
-	</div>
-	<div class="row">
-		<div class="content">
-			<div class="row">
-				<div class="col l6 s12 white ">
-					<table class="bordered cart_list ">
-			        <thead>
-			          <tr>
-			          	  <th id="picture" data-field="picture">Item</th>
-			              <th data-field="id"></th>
-			              <th data-field="quantity">Quantity</th>
-			              <th id="price_th" data-field="price">Price</th>
-			              <th data-field="change"></th>
-			          </tr>
-			        </thead>
-			        <tbody>
+    <div class="main">	
+        <div class="logo_left"><a href="/">MATCHSOCKS</a></div>
+        <div class="row">
+          <form method="post" action="/proceed">
+            <div class="col l6 s12">
+                <div class="contact" id="contents">
+                    <div class="row">
+                      <p class="title">Contact & Shipping</p>    
+                    	<fieldset>
+                        <p class="label">Your email address</p>
+                        <div class="input-field col s12">
+                          <input type="text" placeholder="Email">
+                        </div>
+                        <p id="info">Receipts and notifications will be sent to this email address.</p>
+                        <p class="label">Shipping Address</p>
+                        <div class="input-field col m6 s12">
+                           <input type="text" id="shipping_fname" name="shipping_fname" placeholder="First Name">
+                         </div>
+                        <div class="input-field col m6 s12">
+                          <input type="text" id="shipping_lname" name="shipping_lname" placeholder="Last Name">
+                        </div>
+                        <div class="input-field col s12">
+                          <input type="text" id="shipping_street1" name="shipping_street1" placeholder="Street Address 1">
+                        </div>
+                        <div class="input-field col s12">
+                          <input type="text" id="shipping_street2" name="shipping_street2" placeholder="Street Address 2">
+                        </div>
+                        <div class="input-field col s12">
+                          <select class="browser-default" >
+                            <option id="shipping_country" name="shipping_country" value="USA">United States</option>
+                          </select>
+                        </div>
+                        <div class="input-field col s5">
+                          <input type="text" id="shipping_city" name="shipping_city" placeholder="City">
+                        </div>
+                        <div class="input-field col s3">
+                          <select id="shipping_state" name="shipping_state" class="browser-default">
+                            <option value=""disabled selected></option>
+    <?php
+    $states = $this->sock->get_states();
+foreach ($states as $state){
+    ?>
+                            <option value="<?=$state['code']?>"><?=$state['code']?></option>
 <?php
-if(count($this->cart->contents()>0)) {
-	foreach ($contents as $content){
+}
 ?>
-			          <tr>
-			          	<form method="post" action="edit_cart">
-			            <td><img src="/assets/products/<?=$content['picture']?>" width="30px"></td>
-			            <td><p id="name"><?=$content['name']?></p></td>
-			            <td>
-			            	<input id="number" type="number" name="qty" min="1" max="10" value="<?=$content['qty']?>">
-			            </td>
-			            <td><p id="price">$<?=$content['price']?></p></td>
-			            <td><a href="/remove_cart/<?=$content['rowid']?>"><p id="change" ><img src="/assets/icon_close.png" width="10px"></p></a>
-			      <!--       	<input type="hidden" name="id" value="<?=$content['id']?>"> -->
-			            	<input type="hidden" name="rowid" value="<?=$content['rowid']?>">
-			            	<button type="submit">Edit</button>
-		            	</td>
-			            </form>
-			          </tr>
-	<?php
-		}
-	}
-	else 
-	{
-	?>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-	<?php				
-	}
-	?>
-			          <tr>
-			            <td id="subtotal" colspan="3"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-			            <td id="total" colspan="2"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-			          </tr>
-			          <tr>
-			            <td id="subtotal" colspan="3"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-			            <td id="total" colspan="2"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-			          </tr>
-			          <tr>
-			            <td id="subtotal" colspan="3"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-			            <td id="total" colspan="2"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
-			          </tr>
-			        </tbody>
-			      </table>
-		      </div>
-		      <div class="col l6 s12 white">
-					<p>Contact & Shipping</p>
-					 <div class="row">
-					    <form class="col s12">
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <input placeholder="Email" id="email" type="email" class="validate">
-					          <label for="email">Your Email Address</label>
-					          <p>Receipts and notifications will be sent to this email address.</p>
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="First Name" id="first_name" type="text" class="validate">
-					          <label for="first_name">Shipping Address</label>
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="Last Name" id="last_name" type="text" class="validate">
-					          
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <input placeholder="Street Address 1" id="address1" type="text" class="validate">
-					          
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <input placeholder="Street Address 2" id="address2" type="text" class="validate">
-					          
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s12">
-					          <input placeholder="United States" id="first_name" type="text" class="validate">
+                          </select>
+                        </div>
+                        <div class="input-field col s4">
+                          <input type="text" id="shipping_zip" name="shipping_zip" placeholder="Zip / Postal">
+                        </div>
+                        <div class="input-field col s12">
+                          <input type="text" id="shipping_phone" name="shipping_phone" placeholder="Phone Number">
+                        </div>
+                      </fieldset> 
+                    </div>
+                  </div>
+            </div>
+            <div class="col l6 s12">
+                <div class="orders" id="contents">
+                  <p class="title">Order Summary</p>
+                  <div class="shopping_cart">
+                    <?php
+                      $this->load->view('partials/shopping_cart');
+                    ?>
+                  </div>
+                </div>
+            </div>
+            <div class="col l6 s12">
+                <div class="orders" id="contents">
+                  <div class="row">
+                  	<fieldset>
+                        <p class="title">Billing Address</p>
+                          <div class="input-field col s12">
+                            	<p class="checkbox">
+                                <div class="row">
+                                   <label>Same as shipping</label>
+                                   <input id="same" name="same" type="checkbox"/>
+                                </div>
+					                     </p>
+                          </div>
+                          <div class="input-field col m6 s12">
+                             <input type="text" id="billing_fname" name="billing_fname" placeholder="First Name">
+                           </div>
+                           <div class="input-field col m6 s12">
+                          <input type="text" id="billing_lname" name="billing_lname" placeholder="Last Name">
+                          </div>
+                          <div class="input-field col s12">
+                            <input type="text" id="billing_street1" name="billing_street1" placeholder="Street Address 1">
+                          </div>
+                          <div class="input-field col s12">
+                            <input type="text" id="billing_street2" name="billing_street2" placeholder="Street Address 2">
+                          </div>
+                          <div class="input-field col s12">
+                            <select class="browser-default" >
+                              <option id="billing_country" name="billing_country" value="1">United States</option>
+                            </select>
+                          </div>
+                          <div class="input-field col s5">
+                            <input type="text" id="billing_city" name="billing_city" placeholder="City">
+                          </div>
+                          <div class="input-field col s3">
+                            <select id="billing_state" name="billing_state" class="browser-default">
+                              <option value=""disabled selected></option>
+      <?php
+      $states = $this->sock->get_states();
+foreach ($states as $state){
+      ?>
+                            <option value="<?=$state['code']?>"><?=$state['code']?></option>
+<?php
+}
+?>
+                            </select>
+                          </div>
+                          <div class="input-field col s4">
+                            <input type="text" id="billing_zip" name="billing_zip" placeholder="Zip / Postal">
+                          </div>
+                          <div class="input-field col s12">
+                            <input type="text" id="billing_phone" name="billing_phone" placeholder="Phone Number">
+                          </div>
+                          <div class="input-field col s12">
+                            <select class="browser-default">
+         <?php
+$states = $this->sock->get_cards();
+foreach ($cards as $card){
+        ?>
+                              <option name="card" value="<?=$card['type']?>"><?=$card['type']?></option>
+<?php
+}
+?>
+                              </select>
+                            </div>
+                            <div class="input-field col m6 s12">
+                               <input type="text" name="name_on_card" placeholder="Name on Card">
+                             </div>
+                             <div class="input-field col m6 s12">
+                              <input type="text" name="card_number" placeholder="Card number">
+                            </div>
+                            <div class="input-field col s3">
+                              <select name="expiration_month" class="browser-default">
+                                <option value="01">JAN</option>
+                                <option value="02">FEB</option>
+                                <option value="03">MAR</option>
+                                <option value="04">APR</option>
+                                <option value="05">MAY</option>
+                                <option value="06">JUN</option>
+                                <option value="07">JUL</option>
+                                <option value="08">AUG</option>
+                                <option value="09">SEP</option>
+                                <option value="10">OCT</option>
+                                <option value="11">NOV</option>
+                                <option value="12">DEC</option>
+                              </select>
+                            </div>
+                            <div class="input-field col s3">
+                              <select name="expiration_year" class="browser-default">
+                                <?php
+                                 for($i=date("Y"); $i<=date("Y")+10; $i++)
+                                 {
+                                  ?>
+                                    <option value="<?=$i?>"><?=$i?></option>
+                                  <?php
+                                 }
+                                     
+                                ?>
+                              </select>
+                            </div>
+                            <div class="input-field col s6">
+                              <input type="text" name="security_code" placeholder="Card Security Code">
+                            </div>
+                            <div class="input-field col s12">
+                            <p id="checkout"><button type="submit" class="waves-effect black btn-flat" style="color:white">Proceed</button></p>
+                            </div>
+                      </fieldset>
+                  </div>
+                </div>
+            </div>
+          </form>
+      </div>
 
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="City" id="first_name" type="text" class="validate">
+    </div>
 
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="State" id="first_name" type="text" class="validate">
-
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="Zip / Postal" id="first_name" type="text" class="validate">
-
-					        </div>
-					      </div>
-					      <div class="row">
-					        <div class="input-field col s6">
-					          <input placeholder="Phone Number" id="first_name" type="text" class="validate">
-				
-					        </div>
-					      </div>
-							<a href="/#"><p id="checkout"><button type="submit" class="waves-effect black btn-flat" style="color:white">Checkout</button></p></a>
-					    </form>
-					  </div>
-			
-
-				</div>
-		</div>
-
-	</div>
-	
-	</div>
-  <div class="menu_right">
-            <?php
-                $this->load->view('partials/menu_right');
-            ?>
-        </div>
 </body>
 </html>
 <body>
