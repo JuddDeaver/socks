@@ -187,19 +187,24 @@ class Sock extends CI_Model {
 	public function search_db($values, $columns, $tables)
 	{
 		$results = [];
+		$color_results = [];
 		foreach ($tables as $table)
 		{
 			$query = "SELECT * FROM $table
 						WHERE ";
 			foreach ($columns as $column)
 			{
+				if ($column === 'colors')
+				{
+					$color_results = $this->sock->search_color($values);
+				}
 				foreach ($values as $value)
 				{
 					$query .= "$column LIKE '${value}'";
 				}
 				
 			}
-			$results[$table] = $this->db->query($query)->result_array();
+			$results[$table] = array_merge($this->db->query($query)->result_array(), $color_results);
 		}
 		return $results;
 	}
@@ -227,7 +232,7 @@ class Sock extends CI_Model {
 
 		$query .= "group by product_id
 		HAVING count(*) >=" . $num_colors;
-		return $this->db->query($query);
+		return $this->db->query($query)->result_array();
 	}
 
 
