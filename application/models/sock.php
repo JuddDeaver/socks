@@ -271,4 +271,14 @@ class Sock extends CI_Model {
 	{
 		$this->db->query("DELETE FROM products where id=$id");
 	}
+	public function get_states()
+	{
+		$query = "SELECT code FROM states";
+		return $this->db->query($query)->result_array();
+	}
+	public function get_cards()
+	{
+		$query = "SELECT type FROM cc_types";
+		return $this->db->query($query)->result_array();
+	}
 }

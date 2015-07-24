@@ -65,9 +65,6 @@ $contents = $this->cart->contents();
 		right: 20px;
 		top: 20px;
 	}
-	.content h5 {
-		padding: 0 10px;
-	}
 	.price {
 		color: gray;
 		line-height: 19px;
@@ -112,6 +109,15 @@ $contents = $this->cart->contents();
 		    $( ".option li" ).click(function() {
 			  $( ".option ul" ).toggle(200);
 			});
+		  	$(document).on("change", ".desc", function(){
+		  		alert('here');
+		  		
+		  // 		$.post(
+				// "/notes/edit_cart",
+				// $(this).parent().serialize(),
+				// function(res){
+				// 	console.log(res);
+			});
 		});
 	</script>
 </head>
@@ -153,7 +159,7 @@ if(count($this->cart->contents()>0)) {
 		            <td>
 		            	<input id="number" type="number" name="qty" min="1" max="10" value="<?=$content['qty']?>">
 		            </td>
-		            <td><p id="price">$<?=$content['price']?></p></td>
+		            <td><p id="price">$<?=$content['price'] * $content['qty']?></p></td>
 		            <td><a href="/remove_cart/<?=$content['rowid']?>"><p id="change" ><img src="/assets/icon_close.png" width="10px"></p></a>
 		      <!--       	<input type="hidden" name="id" value="<?=$content['id']?>"> -->
 		            	<input type="hidden" name="rowid" value="<?=$content['rowid']?>">
