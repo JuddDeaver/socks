@@ -6,11 +6,19 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function()
 		{
 		    $('select').material_select();
-
+		    $('a#delete_product').bind('click', function()
+			{
+				// alert("I am an alert box!"); 
+				if (confirm('Delete?')) {
+					window.location.href="/delete_product/<?= $product['id'] ?>";
+				} else {
+				    alert('Why did you press cancel? You should have confirmed');
+				}
+			});
 		});
 	</script>
 	<style type="text/css">
@@ -67,7 +75,7 @@
 					<tr>
 						<th>Action</th>
 						<th data-field='imageurl'>Product Image</th>
-						<th data-field='id'>ID</th>
+					    <th data-field='inventory'>Inventory</th>
 						<th data-field='brand'>Brand</th>
 						<th data-field='name'>Name</th>
 						<th data-field='color'>color(s)</th>
@@ -76,8 +84,7 @@
 					    <th data-field='size'>Size</th>
 		    			<th data-field='style'>Style</th>
 					    <th data-field='material'>Material</th>
-					    <th data-field='created_at'>Created At</th>
-					    <th data-field='updated_at'>Shipping Address</th>
+					    <th data-field='Description'>Description</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -93,10 +100,10 @@
 						<tr>
 							<td>
 								<a href="edit_product/<?= $product['id']; ?>">Edit</a>
-								<a href="delete_product/<?= $product['id']; ?>">Delete</a>
+								<a id="delete_product" href="delete_product/<?= $product['id']; ?>">Delete</a>
 							</td>
 							<td><img width='60' src="<?= $image; ?>"></td>
-							<td><?= $product['id']; ?> </td>
+						    <td><?= $product['inventory']; ?> </td>
 							<td><?= $product['brand']; ?> </td>
 						    <td><?= $product['name']; ?> </td>
 						    <td><?= $product['color']; ?> </td>
@@ -105,8 +112,7 @@
 						    <td><?= $product['size']; ?> </td>
 						    <td><?= $product['style']; ?> </td>
 						    <td><?= $product['material']; ?> </td>
-						    <td><?= $product['created_at']; ?> </td>
-						    <td><?= $product['updated_at']; ?> </td>
+						    <td><?= $product['description']; ?> </td>
 					</a>
 						</tr>
 <?php

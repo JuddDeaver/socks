@@ -46,8 +46,8 @@
 						</form>
 					</li>
 					<li class="active"><a href="orders_a">Orders</a></li>
-					<li><a href="products_a">Products</a></li>
-					<li><a href="logout_a">Log out</a></li>
+					<li><a href="/products_a">Products</a></li>
+					<li><a href="/logout_a">Log out</a></li>
 				</ul>
 			</div>
 		</nav>

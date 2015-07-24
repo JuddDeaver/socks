@@ -46,8 +46,8 @@
 						</form>
 					</li>
 					<li class="active"><a href="orders_a">Orders</a></li>
-					<li><a href="products_a">Products</a></li>
-					<li><a href="logout_a">Log out</a></li>
+					<li><a href="/products_a">Products</a></li>
+					<li><a href="/logout_a">Log out</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -71,6 +71,7 @@
 					    <th>Material</th>
 					    <th>Quantity</th>
 						<th>Price</th>
+						<th>Description</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -89,6 +90,7 @@
 					    <td><?= $order['Material']; ?> </td>
 					    <td><?= $order['Quantity']; ?> </td>
 						<td><?= $order['Price']; ?> </td>
+						<td><?= $order['Description']; ?> </td>
 					</tr>
 <?php
 				}

@@ -98,6 +98,7 @@ class Sock extends CI_Model {
 		    products.size AS 'Size',
 		    products.style AS 'Style',
 		    products.material AS 'Material',
+		    products.description AS 'Description',
 		    order_items.quantity AS 'Quantity',
 			order_items.price AS 'Price',
 			order_heads.created_at AS 'Created_at',
@@ -248,6 +249,8 @@ class Sock extends CI_Model {
 			    products.size AS 'Size',
 			    products.style AS 'Style',
 			    products.material AS 'Material',
+			    products.description AS 'Description',
+			    products.inventory AS 'Inventory',
 			    order_items.quantity AS 'Quantity',
 				order_items.price AS 'Price'
 			    
