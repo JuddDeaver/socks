@@ -22,7 +22,7 @@ foreach ($contents as $content){
         		<input class="rowid" type="hidden" name="rowid" value="<?=$content['rowid']?>">
 	        </form>
         </td>
-        <td><p id="price">$<?=$content['price'] * $content['qty']?></p></td>
+         <td><p id="price">$<?=number_format($content['price'] * $content['qty'], 2)?></p></td>
         <td>
         	<form class="remove" method="post">
         		<p id="remove" ><img src="/assets/icon_close.png" width="10px"></p>
@@ -44,7 +44,7 @@ else
 }
 ?>
       <tr>
-        <td id="subtotal" colspan="5"><b>Subtotal</b>  $<?=$this->cart->total()?></td>
+        <td id="subtotal" colspan="5"><b>Subtotal</b>  $<?=number_format($this->cart->total(), 2)?></td>
       </tr>
     </tbody>
 </table>

@@ -105,7 +105,7 @@
 </head>
 <body>
 	
-<?php if(  count ($this->cart->total_items() ) > 0 )
+<?php if( count ($this->cart->contents()) > 0 )
 {
 ?>
     <div class="cart valign-wrapper hide-on-small-only">

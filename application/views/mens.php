@@ -43,7 +43,7 @@
 	</script>
 </head>
 <body>
-<?php if(  count ($this->cart->total_items() ) > 0 )
+<?php if( count ($this->cart->contents()) > 0 )
 {
 ?>
     <div class="cart valign-wrapper hide-on-small-only">
@@ -86,8 +86,8 @@
 					      <label for="filled-in-box">Black</label>
 					    </p>
 					    <p>
-					      <input type="checkbox" class="filled-in" id="filled-in-box"  />
-					      <label for="filled-in-box">Yellow</label>
+					      <input type="checkbox"   />
+					      <label >Yellow</label>
 					    </p>
 					    <button type="submit">Search</button>
 					  </form>
@@ -99,10 +99,6 @@
 			    </li>
 			    <li>
 			      <div class="collapsible-header">Size</div>
-			      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-			    </li>
-			    <li>
-			      <div class="collapsible-header">Style</div>
 			      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
 			    </li>
 			    <li>

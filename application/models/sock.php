@@ -269,6 +269,11 @@ class Sock extends CI_Model {
 
 		return $this->db->query($query)->result_array();
 	}
+	public function get_all_colors()
+	{
+		$query = "SELECT color FROM colors";
+		return $this->db->query($query)->result_array();
+	}
 
 	public function delete_product($id)
 	{

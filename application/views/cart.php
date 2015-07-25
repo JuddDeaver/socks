@@ -16,13 +16,6 @@
 		font-size: 10px;
 		color: grey;
 	}
-	#name {
-		margin-top: 5px;
-		font-size: 10px;
-		color: grey;
-		border: none;
-		width: 150px;
-	}
 	#price {
 		border: none;
 		color: grey;
@@ -40,6 +33,7 @@
 		text-align: right;
 		color: grey;
 		padding: 25px 0px;
+
 	}
 	#subtotal b {
 		margin-right: 20px;
@@ -74,21 +68,10 @@
 		border: none;
 		display: inline-block;
 	}
-	#quantity input{
-
-		position: relative;
-		top: -10px;
-	}
 	#name {
 		margin: 0px;
-		font-size: 18px;
-		font-weight: 500;
-	}
-	#price {
-		font-size: 15px;
-		font-weight: 500;
-		position: relative;
-		top: -5px;
+		font-size: 12px;
+			color: grey;
 	}
 	#price input {
 		display: inline-block;
@@ -173,6 +156,7 @@
                 $this->load->view('partials/menu_right');
             ?>
         </div>
+
 </body>
 </html>
 <body>

@@ -23,7 +23,7 @@
     .border {
         outline: 3px solid black;
         padding: 10px;
-        min-height: 400px;
+        min-height: 310px;
     }
     .sub_menu{
         margin-top: 20px;
@@ -61,7 +61,7 @@
     </script>
 </head>
 <body>
-<?php if(  count ($this->cart->total_items() ) > 0 )
+<?php if( count ($this->cart->contents()) > 0 )
 {
 ?>
     <div class="cart valign-wrapper hide-on-small-only">
@@ -152,7 +152,6 @@
                               </div>
                             </li>
                           </ul>
-                          <button>FIND</button>
                     </div>
                     <div class="col s12 m6">
                         -OR-
