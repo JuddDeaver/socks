@@ -54,14 +54,9 @@
 
 	#ck-button {
 	    margin:4px;
-	    background-color: red;
-	    border:1px solid #eee;
+	  
 	    overflow:auto;
 	    float:left;
-	}
-
-	#ck-button:hover {
-	    background:red;
 	}
 
 	#ck-button label {
@@ -80,14 +75,58 @@
 	}
 
 	#ck-button input:checked + span {
-	    background: grey;
-	    color:#fff;
+	    opacity: 1;
+	    box-shadow: 1px 1px 2px #888888;
 	}
-	#red {
-		background-color: #ee443b;
+	span {
 		color: white;
-		font-weight: 400;
+	 	 /*border:1px solid #eee;*/
+	 	 opacity: .5;
+	 	 margin-right: 4px;
 	}
+	#red span{
+		background-color: #ee443b;	 
+	}
+	#orange span{
+		background-color: #eb7b25;
+	}
+	#yellow span{
+		background-color: #f5c324;
+	}
+	#green span{
+		background-color: #01cd74;
+	}
+	#blue span{
+		background-color: #1c99db;
+	}
+	#navy span{
+		background-color: #334960;
+	}
+	#purple span{
+		background-color: #9e58b8;
+	}
+	#black span{
+		background-color: black;
+	}
+	#white span{
+		background-color: white;
+		color: black;
+	}
+	#grey span{
+		background-color: #bec3c7;
+	}
+	#brown span{
+		background-color: #ba752a;
+	}
+	#pink span{
+		background-color: #ff98c7;
+	}
+	#multi span{
+		background-image: url("/assets/colors/multi.jpg");
+		background-size: 100%;
+		color: black;
+	}
+
     </style>
     <script>
         $(document).ready(function(){
@@ -134,24 +173,46 @@
                      <table>
                      	<tr>
                      		<td>Color</td>
-                     		<td class="color">
-<?php
-		$colors = $this->sock->get_all_colors();
-		foreach($colors as $color){
-?>
-								<img src="/assets/colors/<?=$color['color']?>.jpg">
-<?php
-	}
-
-?>
-                     		</td>
-                     	</tr>
-                     	<tr>
-                     		<td>Color</td>
                      		<td>
                      			<div id="ck-button">
-								   <label id="red">
-								      <input type="checkbox" value="1"><span>red</span>
+								   <label id="red" >
+								      <input type="checkbox" value="red"><span >red</span>
+								   </label>
+								   <label id="orange">
+								      <input type="checkbox" value="orange"><span>orange</span>
+								   </label>
+								   <label id="yellow">
+								      <input type="checkbox" value="yellow"><span>yellow</span>
+								   </label>
+								   <label id="green">
+								      <input type="checkbox" value="green"><span>green</span>
+								   </label>
+								   <label id="blue">
+								      <input type="checkbox" value="blue"><span>blue</span>
+								   </label>
+								   <label id="navy">
+								      <input type="checkbox" value="navy"><span>navy</span>
+								   </label>
+								   <label id="purple">
+								      <input type="checkbox" value="purple"><span>purple</span>
+								   </label>
+								   <label id="black">
+								      <input type="checkbox" value="black"><span>black</span>
+								   </label>
+								   <label id="white">
+								      <input type="checkbox" value="white"><span>white</span>
+								   </label>
+								   <label id="grey">
+								      <input type="checkbox" value="grey"><span>grey</span>
+								   </label>
+								   <label id="brown">
+								      <input type="checkbox" value="brown"><span>brown</span>
+								   </label>
+								   <label id="pink">
+								      <input type="checkbox" value="pink"><span>pink</span>
+								   </label>
+								   <label id="multi">
+								      <input type="checkbox" value="multi"><span>multi</span>
 								   </label>
 								</div>
                      		</td>

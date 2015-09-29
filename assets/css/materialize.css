@@ -8058,26 +8058,29 @@ button.btn-floating {
     width: 100%;
     clear: both;
 
-    line-height: 1.5rem;
-
+    /*line-height: 1.5rem;*/
+    height: 30px;
     cursor: pointer;
     text-align: left;
     text-transform: none;
+    background-color: white;
+    color: white;
 
-    color: rgba(0, 0, 0, .87);
+    /*color: rgba(0, 0, 0, .87);*/
 }
 .dropdown-content li:hover,
 .dropdown-content li.active {
-    background-color: #eee;
+    border: 2px solid black;
+    color: white;
 }
 .dropdown-content li > a,
 .dropdown-content li > span {
     display: block;
-    padding: 1rem 1rem;
+    padding: 5px 5px;
 
-    font-size: 1.2rem;
+    font-size: 14px;
 
-    color: #26a69a;
+    color: black;
 }
 .dropdown-content li > a > i {
     height: inherit;
@@ -9467,7 +9470,7 @@ textarea.materialize-textarea + label:after {
     line-height: inherit;
 }
 .input-field input[type=search]:focus {
-    color: #444;
+    color: black;
     border: 0;
     background-color: #fff;
     box-shadow: none;
@@ -9778,30 +9781,31 @@ input[type=checkbox]:not(:disabled) ~ .lever:active:after {
 
 .select-wrapper {
     position: relative;
+    display: inline-block;
+    margin-right: 10px;
 }
 .select-wrapper input.select-dropdown {
     position: relative;
 
     display: block;
     width: 100%;
-    height: 3rem;
-    padding: 0;
+    height: 30px;
+    padding: 0 0 0 5px;
     margin: 0 0 15px 0;
 
     font-size: 1rem;
-    line-height: 3rem;
+    /*line-height: 3rem;*/
 
     cursor: pointer;
 
-    border: none;
-    border-bottom: 1px solid #9e9e9e;
+    border: 2px solid black;
     outline: none;
     background-color: transparent;
 }
 .select-wrapper span.caret {
     position: absolute;
-    top: 16px;
-    right: 0;
+    top: 8px;
+    right: 4px;
 
     font-size: 10px;
 

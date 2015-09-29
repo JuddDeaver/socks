@@ -81,3 +81,5 @@ $route['delete_product/(:any)'] = 'socks/delete_product/$1';
 $route['edit_product/(:any)'] = 'socks/edit_product/$1';
 $route['login_admin'] = 'socks/login_admin';
 $route['add_admin'] = 'socks/add_admin';
+
+$route['test'] = 'socks/test';

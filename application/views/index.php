@@ -44,7 +44,20 @@
         letter-spacing: 4px;
         text-align: center;
     }
+    .row .col {
+    float: left;
+    padding: 0 .75rem;
+    /*padding: 0 .4rem;*/
+          -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+                  box-sizing: border-box;
+    }
+      .input-field {
+          position: relative;
 
+          margin-top: 1rem;
+         /* margin-top: .7rem;*/
+      }
     </style>
     <script>
         $(document).ready(function(){

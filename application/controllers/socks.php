@@ -187,4 +187,9 @@ class Socks extends CI_Controller {
 		die();
 		$this->load->view("receipt");
 	}
+
+	public function test()
+	{
+		$this->load->view('test');
+	}
 }
