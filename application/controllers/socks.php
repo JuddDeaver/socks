@@ -147,6 +147,17 @@ class Socks extends CI_Controller {
 	{
 		$this->load->view("search_a");
 	}
+	public function search()
+	{
+		$data = $this->sock->search_db(
+					array('mens'),
+					array('style'),
+					array('products'));
+
+		$data['pictures'] = $data['products'];
+		$this->load->view("search", $data);
+	}
+	
 	public function delete_product($id)
 	{
 		die();

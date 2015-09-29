@@ -210,7 +210,6 @@ class Sock extends CI_Model {
 		return $results;
 	}
 
-
 // pass an array of different colors
 	public function search_color($colors)
 	{
@@ -271,10 +270,29 @@ class Sock extends CI_Model {
 	}
 	public function get_all_colors()
 	{
-		$query = "SELECT color FROM colors";
+		$query = "SELECT color FROM colors ORDER BY color";
 		return $this->db->query($query)->result_array();
 	}
-
+	public function get_all_patterns()
+	{
+		$query = "SELECT pattern FROM patterns ORDER BY pattern";
+		return $this->db->query($query)->result_array();
+	}
+	public function get_all_sizes()
+	{
+		$query = "SELECT size FROM sizes ORDER BY id";
+		return $this->db->query($query)->result_array();
+	}
+	public function get_all_styles()
+	{
+		$query = "SELECT style FROM styles ORDER BY id";
+		return $this->db->query($query)->result_array();
+	}
+	public function get_all_brands()
+	{
+		$query = "SELECT brand FROM brands ORDER BY brand";
+		return $this->db->query($query)->result_array();
+	}
 	public function delete_product($id)
 	{
 		$this->db->query("DELETE FROM products where id=$id");
