@@ -76,6 +76,7 @@ $route['add_a'] = 'socks/add_a';
 $route['dash_a'] = 'socks/dash_a';
 $route['products_a'] = 'socks/products_a';
 $route['search_a'] = 'socks/search_a';
+$route['search_api'] = 'socks/search_api';
 $route['search'] = 'socks/search';
 $route['items_a/(:any)'] = 'socks/items_a/$1';
 $route['delete_product/(:any)'] = 'socks/delete_product/$1';

@@ -149,13 +149,22 @@ class Socks extends CI_Controller {
 	}
 	public function search()
 	{
+		$this->load->view("search");
+	}
+	public function search_api()
+	{
 		$data = $this->sock->search_db(
 					array('mens'),
 					array('style'),
 					array('products'));
+		// $products = $this->sock->search_db(
+		// 			array($this->input->post()['search_term']),
+		// 			array($this->input->post()['search_type']),
+		// 			array('products'));
 
-		$data['pictures'] = $data['products'];
-		$this->load->view("search", $data);
+		// $data['pictures'] = $data['products'];
+		// $this->load->view("search", $data);
+		echo json_encode($data);
 	}
 	
 	public function delete_product($id)
